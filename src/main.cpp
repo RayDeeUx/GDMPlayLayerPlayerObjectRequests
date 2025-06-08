@@ -8,12 +8,12 @@ class $modify(MyPlayLayer, PlayLayer) {
 		PlayLayer::resetLevel();
 		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
 		log::info("[resetLevel] m_startPosObject->m_startSettings->m_mirrorMode: {}", m_startPosObject->m_startSettings->m_mirrorMode);
-		static_cast<GJBaseGameLayer*>(this)->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
+		static_cast<GJBaseGameLayer*>(this)->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, true);
 	}
 	void setupHasCompleted() {
 		PlayLayer::setupHasCompleted();
 		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
 		log::info("[setupHasCompleted] m_startPosObject->m_startSettings->m_mirrorMode: {}", m_startPosObject->m_startSettings->m_mirrorMode);
-		static_cast<GJBaseGameLayer*>(this)->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
+		static_cast<GJBaseGameLayer*>(this)->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, true);
 	}
 };
