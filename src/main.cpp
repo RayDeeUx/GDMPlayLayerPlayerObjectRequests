@@ -6,11 +6,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 	void resetLevel() {
 		PlayLayer::resetLevel();
 		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
-		PlayLayer::toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
+		this->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
 	}
 	void setupHasCompleted() {
 		PlayLayer::setupHasCompleted();
 		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
-		PlayLayer::toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
+		this->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
 	}
 };
