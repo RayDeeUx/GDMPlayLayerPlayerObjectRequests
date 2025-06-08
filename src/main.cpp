@@ -7,19 +7,13 @@ class $modify(MyPlayLayer, PlayLayer) {
 	void resetLevel() {
 		PlayLayer::resetLevel();
 		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
+		log::info("[resetLevel] m_startPosObject->m_startSettings->m_mirrorMode: {}", m_startPosObject->m_startSettings->m_mirrorMode);
 		static_cast<GJBaseGameLayer*>(this)->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
 	}
 	void setupHasCompleted() {
 		PlayLayer::setupHasCompleted();
 		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
+		log::info("[setupHasCompleted] m_startPosObject->m_startSettings->m_mirrorMode: {}", m_startPosObject->m_startSettings->m_mirrorMode);
 		static_cast<GJBaseGameLayer*>(this)->toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, false);
-	}
-};
-
-class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
-	void toggleFlipped(bool whatTheFUCK, bool fuckingHelpME) {
-		log::info("whatTheFUCK (false): {}", whatTheFUCK);
-		log::info("fuckingHelpME (m_startPosObject->m_startSettings->m_mirrorMode): {}", fuckingHelpME);
-		GJBaseGameLayer::toggleFlipped(whatTheFUCK, fuckingHelpME);
 	}
 };
