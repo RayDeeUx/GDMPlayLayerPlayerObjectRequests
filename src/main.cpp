@@ -1,11 +1,12 @@
-#include <Geode/modify/PlayLayer.hpp>
+#include <Geode/modify/PlayerObject.hpp>
 
 using namespace geode::prelude;
 
-class $modify(MyPlayLayer, PlayLayer) {
-	void resetLevel() {
-		PlayLayer::resetLevel();
-		if (!Mod::get()->getSettingValue<bool>("enabled") || !m_isTestMode || !m_startPosObject || !m_startPosObject->m_startSettings) return;
-		PlayLayer::toggleFlipped(m_startPosObject->m_startSettings->m_mirrorMode, true);
+class $modify(MyPlayerObject, PlayerObject) {
+	void updatePlayerScale() {
+		PlayerObject::updatePlayerScale();
+		GJBaseGameLayer* gjbgl = GJBaseGameLayer::get();
+		if (!gjbgl || (this != gjbgl->m_player1 && this != gjbgl->m_player2) || !this->m_isSwing) return;
+		this->updatePlayerSwingFrame(GameManager::get()->getPlayerSwing());
 	}
 };
