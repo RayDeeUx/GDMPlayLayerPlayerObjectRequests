@@ -3,10 +3,9 @@
 using namespace geode::prelude;
 
 class $modify(MyPlayerObject, PlayerObject) {
-	void togglePlayerScale(bool p0, bool p1) {
-		PlayerObject::togglePlayerScale(p0, p1);
-		GJBaseGameLayer* gjbgl = GJBaseGameLayer::get();
-		if (!gjbgl || (this != gjbgl->m_player1 && this != gjbgl->m_player2) || !this->m_isSwing) return;
-		PlayerObject::updatePlayerSwingFrame(GameManager::get()->getPlayerSwing());
+	void update(float dt) {
+		PlayerObject::update(dt);
+		if (!m_gameLayer || !this->isInNormalMode() || !this->m_mainLayer || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return;
+		if (!m_isOnGround) m_mainLayer->setRotation(0);
 	}
 };

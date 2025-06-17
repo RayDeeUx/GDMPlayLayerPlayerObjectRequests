@@ -6,12 +6,12 @@
 		"ios": "2.2074",
 		"android": "2.2074"
 	},
-	"id": "raydeeux.nominiswingvisualerror",
-	"name": "NoMiniSwingVisualError",
+	"id": "raydeeux.norotation",
+	"name": "NoRotation",
 	"version": "v1.0.0",
 	"developer": "RayDeeUx",
 	"description": "Mod description.",
-	"repository": "https://github.com/RayDeeUx/NoMiniSwingVisualError",
+	"repository": "https://github.com/RayDeeUx/NoRotation",
 	"settings": {
 		"enabled": {
 			"name": "Enabled",
