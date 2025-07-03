@@ -45,7 +45,7 @@ int swngFrameMiniP2 = 0;
 			if (playerObject == playerObject->m_gameLayer->m_player1) changeToFrame = frameNrmlP1;\
 			else changeToFrame = frameNrmlP2;\
 		}\
-		if ((changeToFrame < 1 && !playerObject->isInBasicMode()) || (playerObject->isInBasicMode() && changeToFrame < 0)) return;\
+		if ((changeToFrame < 1 && !playerObject->isInNormalMode()) || (playerObject->isInNormalMode() && changeToFrame < 0)) return;\
 		return static_cast<PlayerObject*>(playerObject)->callback(changeToFrame);\
 	}
 
@@ -54,7 +54,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		PlayerObject::togglePlayerScale(toMini, fromPortal);
 		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return;
 		int changeToFrame = -1;
-		CHANGE_TO_FRAME(this, toMini, isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
+		CHANGE_TO_FRAME(this, toMini, isInNormalMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
 		CHANGE_TO_FRAME(this, toMini, m_isShip && !m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, GameManager::get()->getPlayerShip(), GameManager::get()->getPlayerShip(), updatePlayerShipFrame)
 		CHANGE_TO_FRAME(this, toMini, m_isShip && m_isPlatformer, jtpkFrameMiniP1, jtpkFrameMiniP2, GameManager::get()->getPlayerJetpack(), GameManager::get()->getPlayerJetpack(), updatePlayerJetpackFrame)
 		CHANGE_TO_FRAME(this, toMini, m_isBall, ballFrameMiniP1, ballFrameMiniP2, GameManager::get()->getPlayerBall(), GameManager::get()->getPlayerBall(), updatePlayerRollFrame)
@@ -71,8 +71,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 		PlayLayer::resetLevel();
 		if (!enabled) return;
 		int changeToFrame = -1;
-		CHANGE_TO_FRAME(m_player1, m_player1->m_vehicleSize == .6f, m_player1->isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
-		CHANGE_TO_FRAME(m_player2, m_player2->m_vehicleSize == .6f, m_player2->isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
+		CHANGE_TO_FRAME(m_player1, m_player1->m_vehicleSize == .6f, m_player1->isInNormalMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
+		CHANGE_TO_FRAME(m_player2, m_player2->m_vehicleSize == .6f, m_player2->isInNormalMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
 		CHANGE_TO_FRAME(m_player1, m_player1->m_vehicleSize == .6f, m_player1->m_isShip && !m_player1->m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, GameManager::get()->getPlayerShip(), GameManager::get()->getPlayerShip(), updatePlayerShipFrame)
 		CHANGE_TO_FRAME(m_player2, m_player2->m_vehicleSize == .6f, m_player2->m_isShip && !m_player2->m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, GameManager::get()->getPlayerShip(), GameManager::get()->getPlayerShip(), updatePlayerShipFrame)
 		CHANGE_TO_FRAME(m_player1, m_player1->m_vehicleSize == .6f, m_player1->m_isShip && m_player1->m_isPlatformer, jtpkFrameMiniP1, jtpkFrameMiniP2, GameManager::get()->getPlayerJetpack(), GameManager::get()->getPlayerJetpack(), updatePlayerJetpackFrame)
