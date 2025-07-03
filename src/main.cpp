@@ -45,7 +45,7 @@ int swngFrameMiniP2 = 0;
 			if (playerObject == playerObject->m_gameLayer->m_player1) changeToFrame = frameNrmlP1;\
 			else changeToFrame = frameNrmlP2;\
 		}\
-		if ((changeToFrame < 1 && !isInBasicMode()) || (isInBasicMode() && changeToFrame < 0)) return;\
+		if ((changeToFrame < 1 && !playerObject->isInBasicMode()) || (playerObject->isInBasicMode() && changeToFrame < 0)) return;\
 		return static_cast<PlayerObject*>(playerObject)->callback(changeToFrame);\
 	}
 
