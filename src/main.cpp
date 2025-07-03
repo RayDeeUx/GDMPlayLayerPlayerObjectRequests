@@ -72,7 +72,7 @@ int swngFrameMiniP2 = -1;
 
 class $modify(MyPlayerObject, PlayerObject) {
 	void togglePlayerScale(bool toMini, bool fromPortal) {
-		PlayerObject::togglePlayerScale(isMini, fromPortal);
+		PlayerObject::togglePlayerScale(toMini, fromPortal);
 		if (!m_gameLayer || !enabled) return;
 		int changeToFrame = -1;
 		CHANGE_TO_FRAME(isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, cubeFrameNrmlP1, cubeFrameNrmlP2, PlayerObject::updatePlayerFrame)
