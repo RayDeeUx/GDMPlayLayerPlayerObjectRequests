@@ -10,47 +10,53 @@ int cubeFrameNrmlP2 = -1;
 int cubeFrameMiniP1 = -1;
 int cubeFrameMiniP2 = -1;
 
-int shipFrameNrmlP1 = -1;
-int shipFrameNrmlP2 = -1;
+int shipFrameNrmlP1 = 0;
+int shipFrameNrmlP2 = 0;
 
-int shipFrameMiniP1 = -1;
-int shipFrameMiniP2 = -1;
+int jtpkFrameMiniP1 = 0;
+int jtpkFrameMiniP2 = 0;
 
-int ballFrameNrmlP1 = -1;
-int ballFrameNrmlP2 = -1;
+int jtpkFrameNrmlP1 = 0;
+int jtpkFrameNrmlP2 = 0;
 
-int ballFrameMiniP1 = -1;
-int ballFrameMiniP2 = -1;
+int shipFrameMiniP1 = 0;
+int shipFrameMiniP2 = 0;
 
-int birdFrameNrmlP1 = -1;
-int birdFrameNrmlP2 = -1;
+int ballFrameNrmlP1 = 0;
+int ballFrameNrmlP2 = 0;
 
-int birdFrameMiniP1 = -1;
-int birdFrameMiniP2 = -1;
+int ballFrameMiniP1 = 0;
+int ballFrameMiniP2 = 0;
 
-int waveFrameNrmlP1 = -1;
-int waveFrameNrmlP2 = -1;
+int birdFrameNrmlP1 = 0;
+int birdFrameNrmlP2 = 0;
 
-int waveFrameMiniP1 = -1;
-int waveFrameMiniP2 = -1;
+int birdFrameMiniP1 = 0;
+int birdFrameMiniP2 = 0;
 
-int spdrFrameNrmlP1 = -1;
-int spdrFrameNrmlP2 = -1;
+int waveFrameNrmlP1 = 0;
+int waveFrameNrmlP2 = 0;
 
-int spdrFrameMiniP1 = -1;
-int spdrFrameMiniP2 = -1;
+int waveFrameMiniP1 = 0;
+int waveFrameMiniP2 = 0;
 
-int rbotFrameNrmlP1 = -1;
-int rbotFrameNrmlP2 = -1;
+int spdrFrameNrmlP1 = 0;
+int spdrFrameNrmlP2 = 0;
 
-int rbotFrameMiniP1 = -1;
-int rbotFrameMiniP2 = -1;
+int spdrFrameMiniP1 = 0;
+int spdrFrameMiniP2 = 0;
 
-int swngFrameNrmlP1 = -1;
-int swngFrameNrmlP2 = -1;
+int rbotFrameNrmlP1 = 0;
+int rbotFrameNrmlP2 = 0;
 
-int swngFrameMiniP1 = -1;
-int swngFrameMiniP2 = -1;
+int rbotFrameMiniP1 = 0;
+int rbotFrameMiniP2 = 0;
+
+int swngFrameNrmlP1 = 0;
+int swngFrameNrmlP2 = 0;
+
+int swngFrameMiniP1 = 0;
+int swngFrameMiniP2 = 0;
 
 
 #define CACHE_FRAME(setting)\
@@ -66,7 +72,7 @@ int swngFrameMiniP2 = -1;
 			if (this == m_gameLayer->m_player1) changeToFrame = frameNrmlP1;\
 			else changeToFrame = frameNrmlP2;\
 		}\
-		if (changeToFrame < 0) return;\
+		if ((changeToFrame < 1 && !isInBasicMode()) || (isInBasicMode() && changeToFrame < 0)) return;\
 		return callback(changeToFrame);\
 	}
 
@@ -76,7 +82,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (!m_gameLayer || !enabled) return;
 		int changeToFrame = -1;
 		CHANGE_TO_FRAME(isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, cubeFrameNrmlP1, cubeFrameNrmlP2, PlayerObject::updatePlayerFrame)
-		CHANGE_TO_FRAME(m_isShip, shipFrameMiniP1, shipFrameMiniP2, shipFrameNrmlP1, shipFrameNrmlP2, PlayerObject::updatePlayerShipFrame)
+		CHANGE_TO_FRAME(m_isShip && !m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, shipFrameNrmlP1, shipFrameNrmlP2, PlayerObject::updatePlayerShipFrame)
+		CHANGE_TO_FRAME(m_isShip && m_isPlatformer, jtpkFrameMiniP1, jtpkFrameMiniP2, jtpkFrameNrmlP1, jtpkFrameNrmlP2, PlayerObject::updatePlayerJetpackFrame)
 		CHANGE_TO_FRAME(m_isBall, ballFrameMiniP1, ballFrameMiniP2, ballFrameNrmlP1, ballFrameNrmlP2, PlayerObject::updatePlayerRollFrame)
 		CHANGE_TO_FRAME(m_isBird, birdFrameMiniP1, birdFrameMiniP2, birdFrameNrmlP1, birdFrameNrmlP2, PlayerObject::updatePlayerBirdFrame)
 		CHANGE_TO_FRAME(m_isDart, waveFrameMiniP1, waveFrameMiniP2, waveFrameNrmlP1, waveFrameNrmlP2, PlayerObject::updatePlayerDartFrame)

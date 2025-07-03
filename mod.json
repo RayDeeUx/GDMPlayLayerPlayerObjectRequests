@@ -18,6 +18,150 @@
 			"description": "Toggles the mod.",
 			"type": "bool",
 			"default": true
+		},
+		"cubeFrameMiniP1": {
+			"name": "Mini Cube Player 1",
+			"description": "Use `-1` to disable.",
+			"type": "int",
+			"default": -1,
+			"min": -1,
+			"max": 485
+		},
+		"cubeFrameMiniP2": {
+			"name": "Mini Cube Player 2",
+			"description": "Use `-1` to disable.",
+			"type": "int",
+			"default": -1,
+			"min": -1,
+			"max": 485
+		},
+		"shipFrameMiniP1": {
+			"name": "Mini Ship Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 169
+		},
+		"shipFrameMiniP2": {
+			"name": "Mini Ship Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 169
+		},
+		"jtpkFrameMiniP1": {
+			"name": "Mini Jetpack Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 8
+		},
+		"jtpkFrameMiniP2": {
+			"name": "Mini Jetpack Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 8
+		},
+		"ballFrameMiniP1": {
+			"name": "Mini Ball Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 118
+		},
+		"ballFrameMiniP2": {
+			"name": "Mini Ball Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 118
+		},
+		"birdFrameMiniP1": {
+			"name": "Mini UFO Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 149
+		},
+		"birdFrameMiniP2": {
+			"name": "Mini UFO Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 149
+		},
+		"waveFrameMiniP1": {
+			"name": "Mini Wave Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 96
+		},
+		"waveFrameMiniP2": {
+			"name": "Mini Wave Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 96
+		},
+		"rbotFrameMiniP1": {
+			"name": "Mini Robot Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 68
+		},
+		"rbotFrameMiniP2": {
+			"name": "Mini Robot Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 68
+		},
+		"spdrFrameMiniP1": {
+			"name": "Mini Spider Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 69
+		},
+		"spdrFrameMiniP2": {
+			"name": "Mini Spider Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 69
+		},
+		"swngFrameMiniP1": {
+			"name": "Mini Swing Player 1",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 43
+		},
+		"swngFrameMiniP2": {
+			"name": "Mini Swing Player 2",
+			"description": "Use `0` to disable.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 43
 		}
 	},
 	"issues": {
