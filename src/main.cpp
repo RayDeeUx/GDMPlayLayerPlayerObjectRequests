@@ -44,8 +44,7 @@ int swngFrameMiniP2 = 0;
 			if (playerObject == playerObject->m_gameLayer->m_player1) changeToFrame = frameNrmlP1;\
 			else changeToFrame = frameNrmlP2;\
 		}\
-		if ((changeToFrame < 1 && !playerObject->isInNormalMode()) || (playerObject->isInNormalMode() && changeToFrame < 0)) return;\
-		return static_cast<PlayerObject*>(playerObject)->callback(changeToFrame);\
+		if ((changeToFrame > -1 && playerObject->isInNormalMode()) || (changeToFrame > 0 && !playerObject->isInNormalMode())) static_cast<PlayerObject*>(playerObject)->callback(changeToFrame);\
 	}
 
 #define THE_WHOLE_OWL\
