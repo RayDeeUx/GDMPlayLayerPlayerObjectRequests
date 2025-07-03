@@ -6,12 +6,12 @@
 		"ios": "2.2074",
 		"android": "2.2074"
 	},
-	"id": "raydeeux.norotation",
-	"name": "NoRotation",
+	"id": "raydeeux.separateminiicons",
+	"name": "SeparateMiniIcons",
 	"version": "v1.0.0",
 	"developer": "RayDeeUx",
-	"description": "Mod description.",
-	"repository": "https://github.com/RayDeeUx/NoRotation",
+	"description": "Separate Mini Icons (NOT GOING TO THE INDEX)",
+	"repository": "https://github.com/RayDeeUx/SeparateMiniIcons",
 	"settings": {
 		"enabled": {
 			"name": "Enabled",
