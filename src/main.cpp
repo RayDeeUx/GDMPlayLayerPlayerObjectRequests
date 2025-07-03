@@ -67,8 +67,9 @@ class $modify(MyPlayerObject, PlayerObject) {
 };
 
 class $modify(MyPlayLayer, PlayLayer) {
-	void playSpawnEffect() {
-		if (!enabled) return PlayLayer::playSpawnEffect();
+	void resetLevel() {
+		PlayLayer::resetLevel();
+		if (!enabled) return;
 		int changeToFrame = -1;
 		CHANGE_TO_FRAME(m_player1, m_player1->m_vehicleSize == .6f, m_player1->isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
 		CHANGE_TO_FRAME(m_player2, m_player2->m_vehicleSize == .6f, m_player2->isInBasicMode(), cubeFrameMiniP1, cubeFrameMiniP2, GameManager::get()->getPlayerFrame(), GameManager::get()->getPlayerFrame(), updatePlayerFrame)
@@ -88,7 +89,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 		CHANGE_TO_FRAME(m_player2, m_player2->m_vehicleSize == .6f, m_player2->m_isSpider, spdrFrameMiniP1, spdrFrameMiniP2, GameManager::get()->getPlayerSpider(), GameManager::get()->getPlayerSpider(), updatePlayerSpiderFrame)
 		CHANGE_TO_FRAME(m_player1, m_player1->m_vehicleSize == .6f, m_player1->m_isSwing, swngFrameMiniP1, swngFrameMiniP2, GameManager::get()->getPlayerSwing(), GameManager::get()->getPlayerSwing(), updatePlayerSwingFrame)
 		CHANGE_TO_FRAME(m_player2, m_player2->m_vehicleSize == .6f, m_player2->m_isSwing, swngFrameMiniP1, swngFrameMiniP2, GameManager::get()->getPlayerSwing(), GameManager::get()->getPlayerSwing(), updatePlayerSwingFrame)
-		PlayLayer::playSpawnEffect();
 	}
 };
 
