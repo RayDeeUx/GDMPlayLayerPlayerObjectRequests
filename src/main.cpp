@@ -10,7 +10,7 @@ using namespace geode::prelude;
 // i was staring at PlayLayer::levelComplete decomp for
 // what felt like hours and never found out about these
 // was also a coward for not asking prev for IDA decomp
-// oh well. :P --raydeeux
+// oh well. life happens, and now we're here --raydeeux
 
 void saveProgress() {
 	AppDelegate::sharedApplication()->trySaveGame(false);
