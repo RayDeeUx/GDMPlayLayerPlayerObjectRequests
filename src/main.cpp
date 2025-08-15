@@ -24,7 +24,7 @@ class $modify(GJPathRewardPopup) {
 		saveProgress();
 		return true;
 	}
-}
+};
 
 class $modify(PurchaseItemPopup) {
 	void onPurchase(CCObject* sender) {
@@ -39,7 +39,7 @@ class $modify(RewardUnlockLayer) {
 		saveProgress();
 		return true;
 	}
-}
+};
 
 class $modify(EditorPauseLayer) {
 	void onSaveAndExit(CCObject* sender) {
