@@ -3,7 +3,10 @@
 using namespace geode::prelude;
 
 class $modify(PlayLayer) {
-	void addObject(GameObject* object) {
-		if (object->m_objectType != GameObjectType::SecretCoin) PlayLayer::addObject(object);
+	void levelComplete() {
+		AppDelegate::sharedApplication()->trySaveGame(false);
+		GameManager::get()->save();
+		LocalLevelManager::get()->save();
+		PlayLayer::levelComplete();
 	}
 };
