@@ -18,5 +18,57 @@
 	"links": {
 		"community": "https://discord.gg/WqZBYdBWZW",
 		"homepage": "https://discord.com/channels/822510988409831486/1206371881222144020"
+	},
+	"settings": {
+		"enabled": {
+			"name": "Enabled",
+			"type": "bool",
+			"true": true
+		},
+		"onQuit": {
+			"name": "Quitting a Regular Level",
+			"type": "bool",
+			"true": false
+		},
+		"onSetupHasCompleted": {
+			"name": "Entering a Regular Level",
+			"type": "bool",
+			"true": false
+		},
+		"onComplete": {
+			"name": "Completing a Regular Level",
+			"type": "bool",
+			"true": false
+		},
+		"onEnterEditor": {
+			"name": "Entering the Level Editor",
+			"type": "bool",
+			"true": false
+		},
+		"onPlaytestEditor": {
+			"name": "Saving and Playtesting from the Level Editor",
+			"type": "bool",
+			"true": false
+		},
+		"onSaveEditor": {
+			"name": "Saving and Exiting from the Level Editor",
+			"type": "bool",
+			"true": false
+		},
+		"onChest": {
+			"name": "Opening a Chest",
+			"type": "bool",
+			"true": false
+		},
+		"onPurchase": {
+			"name": "Purchasing an Item",
+			"type": "bool",
+			"true": false
+		},
+		"onUnlockingPath": {
+			"name": "Unlocking a Path",
+			"type": "bool",
+			"true": false
+		}
 	}
 }
