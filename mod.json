@@ -23,52 +23,52 @@
 		"enabled": {
 			"name": "Enabled",
 			"type": "bool",
-			"true": true
+			"default": true
 		},
 		"onQuit": {
 			"name": "Quitting a Regular Level",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onSetupHasCompleted": {
 			"name": "Entering a Regular Level",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onComplete": {
 			"name": "Completing a Regular Level",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onEnterEditor": {
 			"name": "Entering the Level Editor",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onPlaytestEditor": {
 			"name": "Saving and Playtesting from the Level Editor",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onSaveEditor": {
 			"name": "Saving and Exiting from the Level Editor",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onChest": {
 			"name": "Opening a Chest",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onPurchase": {
 			"name": "Purchasing an Item",
 			"type": "bool",
-			"true": false
+			"default": false
 		},
 		"onUnlockingPath": {
 			"name": "Unlocking a Path",
 			"type": "bool",
-			"true": false
+			"default": false
 		}
 	}
 }
