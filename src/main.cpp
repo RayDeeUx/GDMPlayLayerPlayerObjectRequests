@@ -8,7 +8,7 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 	};
 	void scaleGracefully(float dt) {
 		if (!m_player) return;
-		if (!this->getUserObject("hiimjustin000.more_icons/name")) return;
+		if (!this->getParent() || !this->getParent()->getUserObject("hiimjustin000.more_icons/name")) return;
 		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
 		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return;
 		const float originalScale = this->scaleForType(m_fields->unlockType);
