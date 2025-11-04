@@ -17,21 +17,21 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 		const float originalScale = this->scaleForType(p0);
 		float futureScale = 1.f;
 		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
-		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
 			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
+		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
+			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
 		}
 		if (originalScale == futureScale) {
 			if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
-			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
 				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
+			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
+				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
 			}
 		}
 
 		if (originalScale != futureScale) {
 			m_fields->futureScale = futureScale;
-			this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .1f);
+			this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .05f);
 		}
 		return true;
 	}
