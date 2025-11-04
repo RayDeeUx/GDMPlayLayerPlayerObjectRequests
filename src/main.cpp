@@ -9,16 +9,30 @@ class $modify(GJItemIcon) {
 		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
 		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return true;
 		const float originalScale = this->getScale();
+		float futureScale = 1.f;
 		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			this->setScale(this->getContentHeight() / simplePlayerChildSprite->getContentHeight());
+			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
 		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
-			this->setScale(simplePlayerChildSprite->getContentHeight() / this->getContentHeight());
+			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
 		}
-		if (originalScale != this->getScale()) return true;
-		if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-			this->setScale(this->getContentWidth() / simplePlayerChildSprite->getContentWidth());
-		} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
-			this->setScale(simplePlayerChildSprite->getContentWidth() / this->getContentWidth());
+		if (originalScale == futureScale) {
+			if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
+				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
+			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
+				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
+			}
+		}
+
+		if (originalScale != futureScale) {
+			Loader::get()->queueInMainThread([this, futureScale](){
+				Loader::get()->queueInMainThread([this, futureScale](){
+					Loader::get()->queueInMainThread([this, futureScale](){
+						Loader::get()->queueInMainThread([this, futureScale](){
+							this->setScale(futureScale);
+						});
+					});
+				});
+			});
 		}
 		return true;
 	}
