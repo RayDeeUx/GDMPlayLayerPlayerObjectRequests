@@ -14,7 +14,7 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 		if (!m_player) return true;
 		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
 		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return true;
-		const float originalScale = this->getScale();
+		const float originalScale = this->scaleForType(p0);
 		float futureScale = 1.f;
 		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
 			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
@@ -31,7 +31,7 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 
 		if (originalScale != futureScale) {
 			m_fields->futureScale = futureScale;
-			this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .25f);
+			this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .1f);
 		}
 		return true;
 	}
