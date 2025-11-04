@@ -17,15 +17,15 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 		log::info("this->getContentWidth(): {}", this->getContentWidth());
 		log::info("simplePlayerChildSprite->getContentWidth(): {}", simplePlayerChildSprite->getContentWidth());
 		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
-		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
 			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
+		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
+			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
 		}
 		if (originalScale == futureScale) {
 			if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
-			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
 				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
+			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
+				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
 			}
 		}
 		
