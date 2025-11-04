@@ -7,9 +7,9 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 		UnlockType unlockType = UnlockType::Cube;
 	};
 	void scaleGracefully(float dt) {
-		if (!m_player) return true;
+		if (!m_player) return;
 		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
-		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return true;
+		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return;
 		const float originalScale = this->scaleForType(m_fields->unlockType);
 		float futureScale = originalScale;
 		log::info("this->getContentHeight(): {}", this->getContentHeight());
