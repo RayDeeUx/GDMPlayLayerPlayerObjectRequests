@@ -7,7 +7,7 @@ class $modify(SimplePlayer) {
 		SimplePlayer::updatePlayerFrame(id, type);
 		if (!this->getParent() || !typeinfo_cast<GJItemIcon*>(this->getParent())) return;
 		auto childSprite = this->getChildByType<CCSprite>(0);
-		if (!childSprite || childSprite->getChildrenCount() < 4
+		if (!childSprite || childSprite->getChildrenCount() < 4) return;
 		// gjitemicon 30x30
 		if (childSprite->getContentHeight() > this->getContentHeight()) {
 			childSprite->setScale(childSprite->getContentHeight() / this->getContentHeight());
