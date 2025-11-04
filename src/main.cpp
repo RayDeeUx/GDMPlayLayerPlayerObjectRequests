@@ -8,16 +8,17 @@ class $modify(GJItemIcon) {
 		if (!m_player) return true;
 		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
 		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return true;
+		const float originalScale = simplePlayerChildSprite->getScale();
 		if (m_player->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			m_player->setScale(m_player->getContentHeight() / simplePlayerChildSprite->getContentHeight());
+			simplePlayerChildSprite->setScale(m_player->getContentHeight() / simplePlayerChildSprite->getContentHeight());
 		} else if (m_player->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
-			m_player->setScale(simplePlayerChildSprite->getContentHeight() / m_player->getContentHeight());
+			simplePlayerChildSprite->setScale(simplePlayerChildSprite->getContentHeight() / m_player->getContentHeight());
 		}
-		
+		if (originalScale != simplePlayerChildSprite->getScale()) return true;
 		if (m_player->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-			m_player->setScale(m_player->getContentWidth() / simplePlayerChildSprite->getContentWidth());
+			simplePlayerChildSprite->setScale(m_player->getContentWidth() / simplePlayerChildSprite->getContentWidth());
 		} else if (m_player->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
-			m_player->setScale(simplePlayerChildSprite->getContentWidth() / m_player->getContentWidth());
+			simplePlayerChildSprite->setScale(simplePlayerChildSprite->getContentWidth() / m_player->getContentWidth());
 		}
 		return true;
 	}
