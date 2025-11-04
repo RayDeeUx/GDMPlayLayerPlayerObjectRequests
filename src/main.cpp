@@ -2,7 +2,13 @@
 
 using namespace geode::prelude;
 
-class $modify(GJItemIcon) {
+class $modify(MyGJItemIcon, GJItemIcon) {
+	struct Fields {
+		float futureScale = 1.f;
+	};
+	void scaleGracefully(float dt) {
+		this->setScale(m_fields->futureScale);
+	}
 	bool init(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) {
 		if (!GJItemIcon::init(p0, p1, p2, p3, p4, p5, p6, p7)) return false;
 		if (!m_player) return true;
@@ -24,15 +30,8 @@ class $modify(GJItemIcon) {
 		}
 
 		if (originalScale != futureScale) {
-			Loader::get()->queueInMainThread([this, futureScale](){
-				Loader::get()->queueInMainThread([this, futureScale](){
-					Loader::get()->queueInMainThread([this, futureScale](){
-						Loader::get()->queueInMainThread([this, futureScale](){
-							this->setScale(futureScale);
-						});
-					});
-				});
-			});
+			m_fields->futureScale = futureScale;
+			this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .25f);
 		}
 		return true;
 	}
