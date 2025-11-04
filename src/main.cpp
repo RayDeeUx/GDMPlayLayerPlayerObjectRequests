@@ -10,15 +10,15 @@ class $modify(GJItemIcon) {
 		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return true;
 		const float originalScale = this->getScale();
 		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			m_player->setScale(this->getContentHeight() / simplePlayerChildSprite->getContentHeight());
+			this->setScale(this->getContentHeight() / simplePlayerChildSprite->getContentHeight());
 		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
-			m_player->setScale(simplePlayerChildSprite->getContentHeight() / this->getContentHeight());
+			this->setScale(simplePlayerChildSprite->getContentHeight() / this->getContentHeight());
 		}
 		if (originalScale != this->getScale()) return true;
 		if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-			m_player->setScale(this->getContentWidth() / simplePlayerChildSprite->getContentWidth());
+			this->setScale(this->getContentWidth() / simplePlayerChildSprite->getContentWidth());
 		} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
-			m_player->setScale(simplePlayerChildSprite->getContentWidth() / this->getContentWidth());
+			this->setScale(simplePlayerChildSprite->getContentWidth() / this->getContentWidth());
 		}
 		return true;
 	}
