@@ -1,24 +1,23 @@
-#include <Geode/modify/SimplePlayer.hpp>
+#include <Geode/modify/GJItemIcon.hpp>
 
 using namespace geode::prelude;
 
-class $modify(SimplePlayer) {
-	void updatePlayerFrame(int id, IconType type) {
-		SimplePlayer::updatePlayerFrame(id, type);
-		if (!this->getParent() || !typeinfo_cast<GJItemIcon*>(this->getParent())) return;
-		auto childSprite = this->getChildByType<CCSprite>(0);
-		if (!childSprite || childSprite->getChildrenCount() < 4) return;
-		// gjitemicon 30x30
-		if (childSprite->getContentHeight() > this->getContentHeight()) {
-			childSprite->setScale(childSprite->getContentHeight() / this->getContentHeight());
-		} else if (childSprite->getContentHeight() < this->getContentHeight()) {
-			childSprite->setScale(this->getContentHeight() / childSprite->getContentHeight());
+class $modify(GJItemIcon) {
+	bool init(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) {
+		if (!GJItemIcon::init(p0, p1, p2, p3, p4, p5, p6, p7)) return false;
+		auto simplePlayer = getChildByType<SimplePlayer>(0);
+		if (!simplePlayer || !m_player) return true;
+		if (m_player->getContentHeight() > simplePlayer->getContentHeight()) {
+			m_player->setScale(m_player->getContentHeight() / simplePlayer->getContentHeight());
+		} else if (m_player->getContentHeight() < simplePlayer->getContentHeight()) {
+			m_player->setScale(simplePlayer->getContentHeight() / m_player->getContentHeight());
 		}
 		
-		if (childSprite->getContentWidth() > this->getContentWidth()) {
-			childSprite->setScale(childSprite->getContentWidth() / this->getContentWidth());
-		} else if (childSprite->getContentWidth() < this->getContentWidth()) {
-			childSprite->setScale(this->getContentWidth() / childSprite->getContentWidth());
+		if (m_player->getContentWidth() > simplePlayer->getContentWidth()) {
+			m_player->setScale(m_player->getContentWidth() / simplePlayer->getContentWidth());
+		} else if (m_player->getContentWidth() < simplePlayer->getContentWidth()) {
+			m_player->setScale(simplePlayer->getContentWidth() / m_player->getContentWidth());
 		}
+		return true;
 	}
 };
