@@ -15,20 +15,26 @@ class $modify(MyGJItemIcon, GJItemIcon) {
 		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
 		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return true;
 		const float originalScale = this->scaleForType(p0);
-		float futureScale = 1.f;
+		float futureScale = originalScale;
+		log::info("this->getContentHeight(): {}", this->getContentHeight());
+		log::info("simplePlayerChildSprite->getContentHeight(): {}", simplePlayerChildSprite->getContentHeight());
+		log::info("this->getContentWidth(): {}", this->getContentWidth());
+		log::info("simplePlayerChildSprite->getContentWidth(): {}", simplePlayerChildSprite->getContentWidth());
 		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
-		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
 			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
+		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
+			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
 		}
 		if (originalScale == futureScale) {
 			if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
-			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
 				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
+			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
+				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
 			}
 		}
-
+		
+		log::info("futureScale: {}", futureScale);
+		log::info("==========================================");
 		if (originalScale != futureScale) {
 			m_fields->futureScale = futureScale;
 			this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .05f);
