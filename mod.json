@@ -1,16 +1,16 @@
 {
-	"geode": "4.4.0",
+	"geode": "5.0.0-beta.4",
 	"gd": {
-		"win": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074",
-		"android": "2.2074"
+		"win": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081",
+		"android": "2.2081"
 	},
 	"id": "raydeeux.separateminiicons",
 	"name": "SeparateMiniIcons",
-	"version": "v1.0.0",
+	"version": "v1.0.1",
 	"developer": "RayDeeUx",
-	"description": "Separate Mini Icons (NOT GOING TO THE INDEX!!)",
+	"description": "Changes icons per gamemode based on whether you're mini or not. (NOT GOING TO THE INDEX!!)",
 	"repository": "https://github.com/RayDeeUx/SeparateMiniIcons",
 	"settings": {
 		"enabled": {
