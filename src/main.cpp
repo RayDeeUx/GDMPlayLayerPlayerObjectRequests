@@ -58,6 +58,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleBirdMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -86,6 +87,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleDartMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -114,6 +116,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleFlyMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
 			case 2: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -142,6 +145,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleRobotMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -170,6 +174,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleRollMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -198,6 +203,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleSpiderMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
 			case 2: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -226,6 +232,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		const int randomGamemode = getRandomGamemode();
 		switch (randomGamemode) {
+			default: return;
 			case 0: return PlayerObject::toggleSwingMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
