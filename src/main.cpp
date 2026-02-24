@@ -66,7 +66,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleRollMode(true, noEffects);
 			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
 			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
-			case 7: return PlayerObject::toggleBirdMode(true, noEffects);
 		}
 	}
 	void toggleDartMode(bool enable, bool noEffects) {
@@ -95,7 +94,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleRollMode(true, noEffects);
 			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
 			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
-			case 7: return PlayerObject::toggleDartMode(true, noEffects);
 		}
 	}
 	void toggleFlyMode(bool enable, bool noEffects) {
@@ -124,7 +122,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleRollMode(true, noEffects);
 			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
 			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
-			case 7: return PlayerObject::toggleFlyMode(true, noEffects);
 		}
 	}
 	void toggleRobotMode(bool enable, bool noEffects) {
@@ -153,7 +150,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleRollMode(true, noEffects);
 			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
 			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
-			case 7: return PlayerObject::toggleRobotMode(true, noEffects);
 		}
 	}
 	void toggleRollMode(bool enable, bool noEffects) {
@@ -182,7 +178,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleDartMode(true, noEffects);
 			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
 			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
-			case 7: return PlayerObject::toggleRollMode(true, noEffects);
 		}
 	}
 	void toggleSpiderMode(bool enable, bool noEffects) {
@@ -211,7 +206,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleRollMode(true, noEffects);
 			case 5: return PlayerObject::toggleFlyMode(true, noEffects);
 			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
-			case 7: return PlayerObject::toggleSpiderMode(true, noEffects);
 		}
 	}
 	void toggleSwingMode(bool enable, bool noEffects) {
@@ -240,7 +234,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 			case 4: return PlayerObject::toggleRollMode(true, noEffects);
 			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
 			case 6: return PlayerObject::toggleRobotMode(true, noEffects);
-			case 7: return PlayerObject::toggleSwingMode(true, noEffects);
 		}
 	}
 };
