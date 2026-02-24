@@ -9,7 +9,7 @@
 	"id": "raydeeux.randomgamemodeeverywhere",
 	"name": "RandomGamemodeEverywhere",
 	"version": "v1.0.0",
-	"developer": "RayDeeUx",
+	"developers": ["RayDeeUx", "TheBearodactyl"],
 	"description": "Some people have odd tastes. Not my place to judge. :P",
 	"settings": {
 		"enabled": {
