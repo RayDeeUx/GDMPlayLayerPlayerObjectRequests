@@ -13,11 +13,12 @@ bool enabled = true;
 bool dontEnableInEditor = true;
 
 int getRandomGamemode() {
-    std::random_device rd;
-    std::mt19937_64 gen(rd());
-    std::uniform_int_distribution<int> dist(0, 7);
+    // std::random_device rd;
+    // std::mt19937_64 gen(rd());
+    // std::uniform_int_distribution<int> dist(0, 7);
 
-    return dist(gen); // value ∈ {0,1,...,7}
+    // return dist(gen); // value ∈ {0,1,...,7}
+	return -1;
 }
 
 $on_game(Loaded) {
