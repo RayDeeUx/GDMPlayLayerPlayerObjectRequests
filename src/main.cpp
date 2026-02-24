@@ -37,13 +37,13 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 static bool shouldPassThrough(PlayerObject* self, GJBaseGameLayer* layer, GameObjectType mode, bool enablePortal) {
 	bool ret = false;
 	if (!layer || !enabled || !self) ret = true;
-	if (self != layer->m_player1 && self != layer->m_player2) ret = true;
-	if (layer->m_isEditor && dontEnableInEditor) ret = true;
+	else if (self != layer->m_player1 && self != layer->m_player2) ret = true;
+	else if (layer->m_isEditor && dontEnableInEditor) ret = true;
 
-	if (self == layer->m_player1 && isRandomizingPlayerOne) ret = true;
-	if (self == layer->m_player2 && isRandomizingPlayerTwo) ret = true;
+	else if (self == layer->m_player1 && isRandomizingPlayerOne) ret = true;
+	else if (self == layer->m_player2 && isRandomizingPlayerTwo) ret = true;
 
-	if (ret) {
+	if (ret && enabled && layer && self) {
 		if (!enablePortal) mode = GameObjectType::CubePortal;
 		layer->updateDualGround(self, static_cast<int>(mode), false, 0.5f);
 	}
