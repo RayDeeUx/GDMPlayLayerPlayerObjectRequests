@@ -1,3 +1,4 @@
+#include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 
 using namespace geode::prelude;
