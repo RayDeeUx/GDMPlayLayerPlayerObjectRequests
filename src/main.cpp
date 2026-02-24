@@ -13,10 +13,10 @@ $on_game(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
 	dontEnableInEditor = Mod::get()->getSettingValue<bool>("dontEnableInEditor");
 
-	listenToAllSettingChanges<bool>("enabled", [](const bool enabledNew) {
+	listenToSettingChanges<bool>("enabled", [](const bool enabledNew) {
 		enabled = enabledNew;
 	});
-	listenToAllSettingChanges<bool>("dontEnableInEditor", [](const bool dontEnableInEditorNew) {
+	listenToSettingChanges<bool>("dontEnableInEditor", [](const bool dontEnableInEditorNew) {
 		dontEnableInEditor = dontEnableInEditorNew;
 	});
 }
