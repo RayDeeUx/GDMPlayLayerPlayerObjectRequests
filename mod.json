@@ -21,6 +21,11 @@
 			"name": "Don't Enable in Editor",
 			"type": "bool",
 			"default": true
+		},
+		"dontRandomizeInitialGamemode": {
+			"name": "Don't Randomize Initial Gamemode",
+			"type": "bool",
+			"default": false
 		}
 	},
 	"issues": {

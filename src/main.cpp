@@ -6,9 +6,11 @@ using namespace geode::prelude;
 
 bool isRandomizingPlayerOne = false;
 bool isRandomizingPlayerTwo = false;
+bool forcePassThrough = true;
 
 bool enabled = true;
 bool dontEnableInEditor = true;
+bool dontRandomizeInitialGamemode = true;
 
 int getRandomGamemode() {
 	std::random_device rd;
@@ -20,9 +22,11 @@ int getRandomGamemode() {
 $on_game(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
 	dontEnableInEditor = Mod::get()->getSettingValue<bool>("dontEnableInEditor");
+	dontRandomizeInitialGamemode = Mod::get()->getSettingValue<bool>("dontRandomizeInitialGamemode");
 
 	listenForSettingChanges<bool>("enabled", [](const bool v) { enabled = v; });
 	listenForSettingChanges<bool>("dontEnableInEditor", [](const bool v) { dontEnableInEditor = v; });
+	listenForSettingChanges<bool>("dontRandomizeInitialGamemode", [](const bool v) { dontRandomizeInitialGamemode = v; });
 }
 
 class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
@@ -32,11 +36,18 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 			isRandomizingPlayerTwo = false;
 		}
 	};
+
+	void resetPlayer() {
+		if (dontRandomizeInitialGamemode) forcePassThrough = true;
+		GJBaseGameLayer::resetPlayer();
+		if (dontRandomizeInitialGamemode) forcePassThrough = false;
+	}
 };
 
 static bool shouldPassThrough(PlayerObject* self, GJBaseGameLayer* layer, GameObjectType mode, bool enablePortal) {
 	bool ret = false;
 	if (!layer || !enabled || !self) ret = true;
+	else if (forcePassThrough) ret = true;
 	else if (self != layer->m_player1 && self != layer->m_player2) ret = true;
 	else if (layer->m_isEditor && dontEnableInEditor) ret = true;
 
