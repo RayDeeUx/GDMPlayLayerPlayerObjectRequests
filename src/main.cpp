@@ -13,10 +13,10 @@ $on_game(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
 	dontEnableInEditor = Mod::get()->getSettingValue<bool>("dontEnableInEditor");
 
-	listenToSettingChanges<bool>("enabled", [](const bool enabledNew) {
+	listenForSettingChanges<bool>("enabled", [](const bool enabledNew) {
 		enabled = enabledNew;
 	});
-	listenToSettingChanges<bool>("dontEnableInEditor", [](const bool dontEnableInEditorNew) {
+	listenForSettingChanges<bool>("dontEnableInEditor", [](const bool dontEnableInEditorNew) {
 		dontEnableInEditor = dontEnableInEditorNew;
 	});
 }
@@ -29,18 +29,6 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 		}
 	};
 };
-
-// geode::utils::random::generate(0, 7) // returns int between [0, 7)
-
-/*
-toggleBirdMode
-toggleDartMode
-toggleFlyMode
-toggleRobotMode
-toggleRollMode
-toggleSpiderMode
-toggleSwingMode
-*/
 
 class $modify(MyPlayerObject, PlayerObject) {
 	void toggleBirdMode(bool enable, bool noEffects) {
