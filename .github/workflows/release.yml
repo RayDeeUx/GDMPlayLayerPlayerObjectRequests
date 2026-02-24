@@ -43,7 +43,7 @@ jobs:
           # export-symbols: true
           # export-pdb: true
           # bindings: RayDeeUx/bindings
-          # bindings-ref: "GJPathRewardPopup"
+          # bindings-ref: "foobar"
           combine: true
           target: ${{ matrix.config.target }}
 

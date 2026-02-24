@@ -1,16 +1,28 @@
 {
-	"geode": "4.7.0",
+	"geode": "4.10.2",
 	"gd": {
 		"win": "2.2074",
 		"mac": "2.2074",
 		"ios": "2.2074",
 		"android": "2.2074"
 	},
-	"id": "raydeeux.fixsimpleplayertallicons",
-	"name": "FixSimplePlayerTallIcons",
+	"id": "raydeeux.randomgamemodeeverywhere",
+	"name": "RandomGamemodeEverywhere",
 	"version": "v1.0.0",
 	"developer": "RayDeeUx",
 	"description": "Some people have odd tastes. Not my place to judge. :P",
+	"settings": {
+		"enabled": {
+			"name": "Enabled",
+			"type": "bool",
+			"default": true
+		},
+		"dontEnableInEditor": {
+			"name": "Don't Enable in Editor",
+			"type": "bool",
+			"default": true
+		}
+	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
 		"info": "Ping me <cl>(@erymanthus)</c> in the Geode SDK Discord server's <cl>#help</c> channel if you need help. <cr>DMs are NOT accepted.</c>"

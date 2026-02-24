@@ -1,36 +1,241 @@
-#include <Geode/modify/GJItemIcon.hpp>
+#include <Geode/modify/PlayerObject.hpp>
 
 using namespace geode::prelude;
 
-class $modify(MyGJItemIcon, GJItemIcon) {
+bool isFromRandomizerPlayerOne = false;
+bool isFromRandomizerPlayerTwo = false;
+
+bool enabled = true;
+bool dontEnableInEditor = true;
+
+$on_game(Loaded) {
+	enabled = Mod::get()->getSettingValue<bool>("enabled");
+	dontEnableInEditor = Mod::get()->getSettingValue<bool>("dontEnableInEditor");
+
+	listenToAllSettingChanges<bool>("enabled", [](const bool enabledNew) {
+		enabled = enabledNew;
+	});
+	listenToAllSettingChanges<bool>("dontEnableInEditor", [](const bool dontEnableInEditorNew) {
+		dontEnableInEditor = dontEnableInEditorNew;
+	});
+}
+
+class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	struct Fields {
-		UnlockType unlockType = UnlockType::Cube;
+		~Fields() {
+			isFromRandomizerPlayerOne = false;
+			isFromRandomizerPlayerTwo = false;
+		}
 	};
-	void scaleGracefully(float dt) {
-		if (!m_player) return;
-		if (!this->getParent() || !this->getParent()->getUserObject("hiimjustin000.more_icons/name")) return;
-		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
-		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return;
-		const float originalScale = this->scaleForType(m_fields->unlockType);
-		float futureScale = originalScale;
-		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
-		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
-			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
+};
+
+// geode::utils::random::generate(0, 7) // returns int between [0, 7)
+
+/*
+toggleBirdMode
+toggleDartMode
+toggleFlyMode
+toggleRobotMode
+toggleRollMode
+toggleSpiderMode
+toggleSwingMode
+*/
+
+class $modify(MyPlayerObject, PlayerObject) {
+	void toggleBirdMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleBirdMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleBirdMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleBirdMode(enable, noEffects);
 		}
-		if (originalScale == futureScale) {
-			if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
-			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
-				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
-			}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleBirdMode(enable, noEffects);
 		}
-		if (futureScale < originalScale) this->setScale(futureScale);
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleBirdMode(false, noEffects);
+			case 1: return PlayerObject::toggleDartMode(true, noEffects);
+			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
+			case 3: return PlayerObject::toggleRobotMode(true, noEffects);
+			case 4: return PlayerObject::toggleRollMode(true, noEffects);
+			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
+			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
+			case 7: return PlayerObject::toggleBirdMode(true, noEffects);
+		}
 	}
-	bool init(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) {
-		if (!GJItemIcon::init(p0, p1, p2, p3, p4, p5, p6, p7)) return false;
-		m_fields->unlockType = p0;
-		this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .009f);
-		return true;
+	void toggleDartMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleDartMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleDartMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleDartMode(enable, noEffects);
+		}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleDartMode(enable, noEffects);
+		}
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleDartMode(false, noEffects);
+			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
+			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
+			case 3: return PlayerObject::toggleRobotMode(true, noEffects);
+			case 4: return PlayerObject::toggleRollMode(true, noEffects);
+			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
+			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
+			case 7: return PlayerObject::toggleDartMode(true, noEffects);
+		}
+	}
+	void toggleFlyMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleFlyMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleFlyMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleFlyMode(enable, noEffects);
+		}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleFlyMode(enable, noEffects);
+		}
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleFlyMode(false, noEffects);
+			case 1: return PlayerObject::toggleDartMode(true, noEffects);
+			case 2: return PlayerObject::toggleBirdMode(true, noEffects);
+			case 3: return PlayerObject::toggleRobotMode(true, noEffects);
+			case 4: return PlayerObject::toggleRollMode(true, noEffects);
+			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
+			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
+			case 7: return PlayerObject::toggleFlyMode(true, noEffects);
+		}
+	}
+	void toggleRobotMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleRobotMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleRobotMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleRobotMode(enable, noEffects);
+		}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleRobotMode(enable, noEffects);
+		}
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleRobotMode(false, noEffects);
+			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
+			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
+			case 3: return PlayerObject::toggleDartMode(true, noEffects);
+			case 4: return PlayerObject::toggleRollMode(true, noEffects);
+			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
+			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
+			case 7: return PlayerObject::toggleRobotMode(true, noEffects);
+		}
+	}
+	void toggleRollMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleRollMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleRollMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleRollMode(enable, noEffects);
+		}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleRollMode(enable, noEffects);
+		}
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleRollMode(false, noEffects);
+			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
+			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
+			case 3: return PlayerObject::toggleRobotMode(true, noEffects);
+			case 4: return PlayerObject::toggleDartMode(true, noEffects);
+			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
+			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
+			case 7: return PlayerObject::toggleRollMode(true, noEffects);
+		}
+	}
+	void toggleSpiderMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleSpiderMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleSpiderMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleSpiderMode(enable, noEffects);
+		}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleSpiderMode(enable, noEffects);
+		}
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleSpiderMode(false, noEffects);
+			case 1: return PlayerObject::toggleDartMode(true, noEffects);
+			case 2: return PlayerObject::toggleBirdMode(true, noEffects);
+			case 3: return PlayerObject::toggleRobotMode(true, noEffects);
+			case 4: return PlayerObject::toggleRollMode(true, noEffects);
+			case 5: return PlayerObject::toggleFlyMode(true, noEffects);
+			case 6: return PlayerObject::toggleSwingMode(true, noEffects);
+			case 7: return PlayerObject::toggleSpiderMode(true, noEffects);
+		}
+	}
+	void toggleSwingMode(bool enable, bool noEffects) {
+		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleSwingMode(enable, noEffects);
+		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleSwingMode(enable, noEffects);
+
+		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
+			isFromRandomizerPlayerOne = false;
+			return PlayerObject::toggleSwingMode(enable, noEffects);
+		}
+		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
+			isFromRandomizerPlayerTwo = false;
+			return PlayerObject::toggleSwingMode(enable, noEffects);
+		}
+
+		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
+		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
+
+		const int random = geode::utils::random::generate(0, 8);
+		switch (random) {
+			case 0: return PlayerObject::toggleSwingMode(false, noEffects);
+			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
+			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
+			case 3: return PlayerObject::toggleDartMode(true, noEffects);
+			case 4: return PlayerObject::toggleRollMode(true, noEffects);
+			case 5: return PlayerObject::toggleSpiderMode(true, noEffects);
+			case 6: return PlayerObject::toggleRobotMode(true, noEffects);
+			case 7: return PlayerObject::toggleSwingMode(true, noEffects);
+		}
 	}
 };
