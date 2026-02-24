@@ -59,8 +59,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleBirdMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -87,8 +87,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleDartMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -115,8 +115,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleFlyMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
 			case 2: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -143,8 +143,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleRobotMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -171,8 +171,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleRollMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
@@ -199,8 +199,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleSpiderMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
 			case 2: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -227,8 +227,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int random = geode::utils::random::generate(0, 8);
-		switch (random) {
+		const int randomGamemode = geode::utils::random::generate(0, 8);
+		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleSwingMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
 			case 2: return PlayerObject::toggleFlyMode(true, noEffects);
