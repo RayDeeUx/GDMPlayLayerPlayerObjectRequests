@@ -46,11 +46,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleBirdMode(enable, noEffects);
+			PlayerObject::toggleBirdMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleBirdMode(enable, noEffects);
+			PlayerObject::toggleBirdMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
@@ -74,11 +76,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleDartMode(enable, noEffects);
+			PlayerObject::toggleDartMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleDartMode(enable, noEffects);
+			PlayerObject::toggleDartMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
@@ -102,11 +106,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleFlyMode(enable, noEffects);
+			PlayerObject::toggleFlyMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleFlyMode(enable, noEffects);
+			PlayerObject::toggleFlyMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
@@ -130,11 +136,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleRobotMode(enable, noEffects);
+			PlayerObject::toggleRobotMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleRobotMode(enable, noEffects);
+			PlayerObject::toggleRobotMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
@@ -158,11 +166,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleRollMode(enable, noEffects);
+			PlayerObject::toggleRollMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleRollMode(enable, noEffects);
+			PlayerObject::toggleRollMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
@@ -186,11 +196,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleSpiderMode(enable, noEffects);
+			PlayerObject::toggleSpiderMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleSpiderMode(enable, noEffects);
+			PlayerObject::toggleSpiderMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
@@ -214,11 +226,13 @@ class $modify(MyPlayerObject, PlayerObject) {
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
 			isFromRandomizerPlayerOne = false;
-			return PlayerObject::toggleSwingMode(enable, noEffects);
+			PlayerObject::toggleSwingMode(enable, noEffects);
+			return;
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
 			isFromRandomizerPlayerTwo = false;
-			return PlayerObject::toggleSwingMode(enable, noEffects);
+			PlayerObject::toggleSwingMode(enable, noEffects);
+			return;
 		}
 
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
