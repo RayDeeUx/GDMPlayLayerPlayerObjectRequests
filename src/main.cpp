@@ -9,6 +9,14 @@ bool isFromRandomizerPlayerTwo = false;
 bool enabled = true;
 bool dontEnableInEditor = true;
 
+int random() {
+    std::random_device rd;
+    std::mt19937_64 gen(rd());
+    std::uniform_int_distribution<int> dist(0, 7);
+
+    return dist(gen); // value ∈ {0,1,...,7}
+}
+
 $on_game(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
 	dontEnableInEditor = Mod::get()->getSettingValue<bool>("dontEnableInEditor");
@@ -47,7 +55,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleBirdMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
@@ -75,7 +83,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleDartMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -103,7 +111,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleFlyMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
@@ -131,7 +139,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleRobotMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -159,7 +167,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleRollMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
@@ -187,7 +195,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleSpiderMode(false, noEffects);
 			case 1: return PlayerObject::toggleDartMode(true, noEffects);
@@ -215,7 +223,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (this == m_gameLayer->m_player1) isFromRandomizerPlayerOne = true;
 		else if (this == m_gameLayer->m_player2) isFromRandomizerPlayerTwo = true;
 
-		const int randomGamemode = geode::utils::random::generate(0, 8);
+		const int randomGamemode = random(0, 7);
 		switch (randomGamemode) {
 			case 0: return PlayerObject::toggleSwingMode(false, noEffects);
 			case 1: return PlayerObject::toggleBirdMode(true, noEffects);
