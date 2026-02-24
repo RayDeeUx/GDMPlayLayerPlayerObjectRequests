@@ -17,7 +17,7 @@ int getRandomGamemode() {
     std::mt19937_64 gen(rd());
     std::uniform_int_distribution<int> dist(0, 7);
 
-    return dist(gen); // value ∈ {0,1,...,7}
+    return dist(gen);
 }
 
 $on_game(Loaded) {
