@@ -4,21 +4,20 @@
 
 using namespace geode::prelude;
 
+bool insidePlayerWillSwitchMode = false;
+
 bool isFromRandomizerPlayerOne = false;
-bool dontRecursePlayerOne = false;
 bool isFromRandomizerPlayerTwo = false;
-bool dontRecursePlayerTwo = false;
 
 bool enabled = true;
 bool dontEnableInEditor = true;
 
 int getRandomGamemode() {
-    // std::random_device rd;
-    // std::mt19937_64 gen(rd());
-    // std::uniform_int_distribution<int> dist(0, 7);
+    std::random_device rd;
+    std::mt19937_64 gen(rd());
+    std::uniform_int_distribution<int> dist(0, 7);
 
-    // return dist(gen); // value ∈ {0,1,...,7}
-	return -1;
+    return dist(gen); // value ∈ {0,1,...,7}
 }
 
 $on_game(Loaded) {
@@ -38,26 +37,29 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 		~Fields() {
 			isFromRandomizerPlayerOne = false;
 			isFromRandomizerPlayerTwo = false;
+			insidePlayerWillSwitchMode = false;
 		}
 	};
+	
+	void playerWillSwitchMode(PlayerObject* player, GameObject* object) {
+		if (player == this->m_player1 || player == this->m_player2) insidePlayerWillSwitchMode = true;
+		GJBaseGameLayer::playerWillSwitchMode(player, object);
+		if (player == this->m_player1 || player == this->m_player2) insidePlayerWillSwitchMode = false;
+	}
 };
 
 class $modify(MyPlayerObject, PlayerObject) {
 	void toggleBirdMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleBirdMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleBirdMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleBirdMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleBirdMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleBirdMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleBirdMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleBirdMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
@@ -77,20 +79,16 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 	}
 	void toggleDartMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleDartMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleDartMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleDartMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleDartMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleDartMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleDartMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleDartMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
@@ -110,20 +108,16 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 	}
 	void toggleFlyMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleFlyMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleFlyMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleFlyMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleFlyMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleFlyMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleFlyMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleFlyMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
@@ -143,20 +137,16 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 	}
 	void toggleRobotMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleRobotMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleRobotMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleRobotMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleRobotMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleRobotMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleRobotMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleRobotMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
@@ -176,20 +166,16 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 	}
 	void toggleRollMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleRollMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleRollMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleRollMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleRollMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleRollMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleRollMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleRollMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
@@ -209,20 +195,16 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 	}
 	void toggleSpiderMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleSpiderMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleSpiderMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleSpiderMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleSpiderMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleSpiderMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleSpiderMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleSpiderMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
@@ -242,20 +224,16 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 	}
 	void toggleSwingMode(bool enable, bool noEffects) {
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleSwingMode(enable, noEffects);
+		if (!insidePlayerWillSwitchMode || !m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return PlayerObject::toggleSwingMode(enable, noEffects);
 		if (m_gameLayer->m_isEditor && dontEnableInEditor) return PlayerObject::toggleSwingMode(enable, noEffects);
 
 		if (this == m_gameLayer->m_player1 && isFromRandomizerPlayerOne) {
-			PlayerObject::toggleSwingMode(enable, noEffects);
 			isFromRandomizerPlayerOne = false;
-			dontRecursePlayerOne = true;
-			return;
+			return PlayerObject::toggleSwingMode(enable, noEffects);
 		}
 		if (this == m_gameLayer->m_player2 && isFromRandomizerPlayerTwo) {
-			PlayerObject::toggleSwingMode(enable, noEffects);
 			isFromRandomizerPlayerTwo = false;
-			dontRecursePlayerTwo = true;
-			return;
+			return PlayerObject::toggleSwingMode(enable, noEffects);
 		}
 
 		if (this == m_gameLayer->m_player1 && !isFromRandomizerPlayerOne) isFromRandomizerPlayerOne = true;
