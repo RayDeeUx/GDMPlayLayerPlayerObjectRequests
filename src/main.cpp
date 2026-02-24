@@ -34,15 +34,21 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	};
 };
 
-static bool shouldPassThrough(PlayerObject* self, GJBaseGameLayer* layer) {
-	if (!layer || !enabled || !self) return true;
-	if (self != layer->m_player1 && self != layer->m_player2) return true;
-	if (layer->m_isEditor && dontEnableInEditor) return true;
+static bool shouldPassThrough(PlayerObject* self, GJBaseGameLayer* layer, GameObjectType mode, bool enablePortal) {
+	bool ret = false;
+	if (!layer || !enabled || !self) ret = true;
+	if (self != layer->m_player1 && self != layer->m_player2) ret = true;
+	if (layer->m_isEditor && dontEnableInEditor) ret = true;
 
-	if (self == layer->m_player1 && isRandomizingPlayerOne) return true;
-	if (self == layer->m_player2 && isRandomizingPlayerTwo) return true;
+	if (self == layer->m_player1 && isRandomizingPlayerOne) ret = true;
+	if (self == layer->m_player2 && isRandomizingPlayerTwo) ret = true;
 
-	return false;
+	if (ret) {
+		if (!enablePortal) mode = GameObjectType::CubePortal;
+		layer->updateDualGround(self, static_cast<int>(mode), false, 0.5f);
+	}
+
+	return ret;
 }
 
 static void setRandomizing(PlayerObject* self, GJBaseGameLayer* layer, bool value) {
@@ -52,7 +58,7 @@ static void setRandomizing(PlayerObject* self, GJBaseGameLayer* layer, bool valu
 
 class $modify(MyPlayerObject, PlayerObject) {
 	void toggleBirdMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleBirdMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::UfoPortal, enable)) return PlayerObject::toggleBirdMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
@@ -82,7 +88,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		setRandomizing(this, m_gameLayer, false);
 	}
 	void toggleDartMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleDartMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::WavePortal, enable)) return PlayerObject::toggleDartMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
@@ -112,7 +118,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		setRandomizing(this, m_gameLayer, false);
 	}
 	void toggleFlyMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleFlyMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::ShipPortal, enable)) return PlayerObject::toggleFlyMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
@@ -142,7 +148,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		setRandomizing(this, m_gameLayer, false);
 	}
 	void toggleRobotMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleRobotMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::RobotPortal, enable)) return PlayerObject::toggleRobotMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
@@ -172,7 +178,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		setRandomizing(this, m_gameLayer, false);
 	}
 	void toggleRollMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleRollMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::BallPortal, enable)) return PlayerObject::toggleRollMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
@@ -202,7 +208,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		setRandomizing(this, m_gameLayer, false);
 	}
 	void toggleSpiderMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleSpiderMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::SpiderPortal, enable)) return PlayerObject::toggleSpiderMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
@@ -232,7 +238,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		setRandomizing(this, m_gameLayer, false);
 	}
 	void toggleSwingMode(bool enable, bool noEffects) {
-		if (shouldPassThrough(this, m_gameLayer)) return PlayerObject::toggleSwingMode(enable, noEffects);
+		if (shouldPassThrough(this, m_gameLayer, GameObjectType::SwingPortal, enable)) return PlayerObject::toggleSwingMode(enable, noEffects);
 		setRandomizing(this, m_gameLayer, true);
 		const int r = getRandomGamemode();
 		switch (r) {
