@@ -44,7 +44,6 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	void playerWillSwitchMode(PlayerObject* player, GameObject* object) {
 		if (player == this->m_player1 || player == this->m_player2) insidePlayerWillSwitchMode = true;
 		GJBaseGameLayer::playerWillSwitchMode(player, object);
-		if (player == this->m_player1 || player == this->m_player2) insidePlayerWillSwitchMode = false;
 	}
 };
 
@@ -66,6 +65,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleBirdMode(false, noEffects);
@@ -95,6 +95,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleDartMode(false, noEffects);
@@ -124,6 +125,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleFlyMode(false, noEffects);
@@ -153,6 +155,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleRobotMode(false, noEffects);
@@ -182,6 +185,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleRollMode(false, noEffects);
@@ -211,6 +215,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleSpiderMode(false, noEffects);
@@ -240,6 +245,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 		else if (this == m_gameLayer->m_player2 && !isFromRandomizerPlayerTwo) isFromRandomizerPlayerTwo = true;
 
 		const int randomGamemode = getRandomGamemode();
+		insidePlayerWillSwitchMode = false;
 		switch (randomGamemode) {
 			default: return;
 			case 0: return PlayerObject::toggleSwingMode(false, noEffects);
