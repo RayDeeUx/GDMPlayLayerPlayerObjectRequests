@@ -1,4 +1,4 @@
-// #include <Geode/modify/GameLevelManager.hpp>
+#include <Geode/modify/GameLevelManager.hpp>
 #include <Geode/modify/GameManager.hpp>
 #include <Geode/modify/AppDelegate.hpp>
 
@@ -29,7 +29,6 @@ void deleteSavedLevels() {
 	}
 }
 
-/*
 class $modify(MyGameLevelManager, GameLevelManager) {
 	static void onModify(auto& self) {
 		(void) self.setHookPriorityPre("GameLevelManager::saveLevel", Priority::VeryEarlyPre);
@@ -39,7 +38,6 @@ class $modify(MyGameLevelManager, GameLevelManager) {
 		GameLevelManager::saveLevel(level);
 	}
 };
-*/
 
 class $modify(MyAppDelegate, AppDelegate) {
 	static void onModify(auto& self) {
