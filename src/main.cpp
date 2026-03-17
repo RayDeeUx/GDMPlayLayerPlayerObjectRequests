@@ -13,7 +13,7 @@ void deleteSavedLevels() {
 	if (auto glm = GameLevelManager::get(); glm) {
 		if (auto savedLevels = glm->getSavedLevels(Mod::get()->getSettingValue<bool>("alsoApplyToFavoritedLevels"), 0); savedLevels && savedLevels->count() > 0) {
 			for (GJGameLevel* level : CCArrayExt<GJGameLevel*>(savedLevels)) {
-				if (!level || level->m_levelType == GJLevelType::Main || level->m_levelType == GJLevelType::Editor || level->m_levelType == GJLevelType::Default) continue;
+				if (!level || level->m_levelType != GJLevelType::Saved) continue;
 				if (actuallyDelete) glm->deleteLevel(level);
 				else level->m_levelString = "";
 			}
