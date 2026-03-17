@@ -1,4 +1,3 @@
-#include <Geode/modify/GameLevelManager.hpp>
 #include <Geode/modify/GameManager.hpp>
 #include <Geode/modify/AppDelegate.hpp>
 
@@ -15,12 +14,8 @@ void deleteSavedLevels() {
 		if (auto savedLevels = glm->getSavedLevels(Mod::get()->getSettingValue<bool>("alsoApplyToFavoritedLevels"), 0); savedLevels && savedLevels->count() > 0) {
 			for (GJGameLevel* level : CCArrayExt<GJGameLevel*>(savedLevels)) {
 				if (!level || level->m_levelType == GJLevelType::Main || level->m_levelType == GJLevelType::Editor || level->m_levelType == GJLevelType::Default) continue;
-				if (actuallyDelete) {
-					glm->deleteLevel(level);
-				} else {
-					level->m_levelString = "";
-					level->m_dontSave = true;
-				}
+				if (actuallyDelete) glm->deleteLevel(level);
+				else level->m_levelString = "";
 			}
 		}
 	}
@@ -28,16 +23,6 @@ void deleteSavedLevels() {
 		vibecoded->setSavedValue<bool>("vg-filter", originalVibecodedValue);
 	}
 }
-
-class $modify(MyGameLevelManager, GameLevelManager) {
-	static void onModify(auto& self) {
-		(void) self.setHookPriorityPre("GameLevelManager::saveLevel", Priority::VeryEarlyPre);
-	}
-	void saveLevel(GJGameLevel* level) {
-		if (level) level->m_dontSave = true;
-		GameLevelManager::saveLevel(level);
-	}
-};
 
 class $modify(MyAppDelegate, AppDelegate) {
 	static void onModify(auto& self) {
