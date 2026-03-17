@@ -10,7 +10,20 @@
 	"name": "DeleteAllSavedLevelsOnClose",
 	"version": "v1.0.0",
 	"developer": "RayDeeUx",
-	"description": "Some people have odd tastes. Not my place to judge. :P",
+	"description": "Deletes all saved levels on game close.",
+	"settings": {
+		"actuallyDelete": {
+			"name": "Actually Delete Saved Levels",
+			"description": "If this is disabled, levels will simply be cleared.",
+			"type": "bool",
+			"default": true
+		},
+		"alsoApplyToFavoritedLevels": {
+			"name": "Also Apply To Favorite Levels",
+			"type": "bool",
+			"default": true
+		}
+	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
 		"info": "Ping me <cl>(@erymanthus)</c> in the Geode SDK Discord server's <cl>#help</c> channel if you need help. <cr>DMs are NOT accepted.</c>"

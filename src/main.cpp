@@ -5,15 +5,17 @@ using namespace geode::prelude;
 
 void deleteSavedLevels() {
 	bool originalVibecodedValue = false;
+	bool actuallyDelete = Mod::get()->getSettingValue<bool>("actuallyDelete");
 	if (geode::Mod* vibecoded = geode::Loader::get()->getLoadedMod("maytid.mark-of-vengeance"); vibecoded) {
 		originalVibecodedValue = vibecoded->getSavedValue<bool>("vg-filter", false);
 		vibecoded->setSavedValue<bool>("vg-filter", false);
 	}
 	if (auto glm = GameLevelManager::get(); glm) {
-		if (auto savedLevels = glm->getSavedLevels(false, 0); savedLevels && savedLevels->count() > 0) {
+		if (auto savedLevels = glm->getSavedLevels(Mod::get()->getSettingValue<bool>("alsoApplyToFavoritedLevels"), 0); savedLevels && savedLevels->count() > 0) {
 			for (GJGameLevel* level : CCArrayExt<GJGameLevel*>(savedLevels)) {
-				if (!level) continue;
-				glm->deleteLevel(level);
+				if (!level || level->m_levelType == GJLevelType::Main || level->m_levelType == GJLevelType::Editor || level->m_levelType == GJLevelType::Default) continue;
+				if (actuallyDelete) glm->deleteLevel(level);
+				else level->m_dontSave = true;
 			}
 		}
 	}
