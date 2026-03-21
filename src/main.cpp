@@ -23,11 +23,17 @@ class $modify(MyEditorUI, EditorUI) {
 	bool init(LevelEditorLayer* editorLayer) {
 		if (!EditorUI::init(editorLayer)) return false;
 
-		if (enabled && editorLayer && !dummyArrays.empty()) {
-			for (CCArray* stupid : dummyArrays) {
-				editorLayer->updateObjectColors(stupid);
-			}
-		}
+		geode::Loader::get()->queueInMainThread([editorLayer](){
+			geode::Loader::get()->queueInMainThread([editorLayer](){
+				geode::Loader::get()->queueInMainThread([editorLayer](){
+					if (enabled && editorLayer && !dummyArrays.empty()) {
+						for (CCArray* stupid : dummyArrays) {
+							editorLayer->updateObjectColors(stupid);
+						}
+					}
+				});
+			});
+		});
 		
 		return true;
 	}
