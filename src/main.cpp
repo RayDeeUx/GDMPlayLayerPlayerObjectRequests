@@ -7,7 +7,7 @@ bool insideMenuItemFromObjectString = false;
 
 $on_mod(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
-	listenForSettingChanges<bool>("enabled", [](const bool) enabledNew {
+	listenForSettingChanges<bool>("enabled", [](const bool enabledNew) {
 		enabled = enabledNew;
 	});
 }
