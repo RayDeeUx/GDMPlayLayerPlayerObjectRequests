@@ -24,7 +24,7 @@ class $modify(MyEditorUI, EditorUI) {
 		if (!EditorUI::init(editorLayer)) return false;
 
 		if (enabled && editorLayer && !dummyArrays.empty()) {
-			for (CCArray stupid : dummyArrays) {
+			for (CCArray* stupid : dummyArrays) {
 				editorLayer->updateObjectColors(stupid);
 			}
 		}
