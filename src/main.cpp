@@ -26,7 +26,7 @@ class $modify(MyEditorUI, EditorUI) {
 		if (!enabled || !insideMenuItemFromObjectString || !m_editorLayer) return EditorUI::spriteFromObjectString(str, absoluteCenter, useGroup, objLimit, objects, group, groupParent);
 
 		CCArray* fireeToldMeToUseThis = CCArray::create();
-		CCSprite* endResult = EditorUI::spriteFromObjectString(str, absoluteCenter, useGroup, 2123456789, fireeToldMeToUseThis, group, groupParent);
+		CCSprite* endResult = EditorUI::spriteFromObjectString(str, false, false, 2123456789, fireeToldMeToUseThis, nullptr, nullptr);
 		m_editorLayer->updateObjectColors(fireeToldMeToUseThis);
 		return endResult;
 	}
