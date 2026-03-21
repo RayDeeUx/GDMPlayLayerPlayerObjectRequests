@@ -13,7 +13,7 @@ $on_mod(Loaded) {
 }
 
 class $modify(MyEditorUI, EditorUI) {
-	CreateMenuItem* menuItemFromObjectString(std::string str, int id) {
+	CreateMenuItem* menuItemFromObjectString(gd::string str, int id) {
 		if (!enabled) return EditorUI::menuItemFromObjectString(str, id);
 
 		insideMenuItemFromObjectString = true;
