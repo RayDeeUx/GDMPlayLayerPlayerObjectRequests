@@ -25,8 +25,9 @@ class $modify(MyEditorUI, EditorUI) {
 	CCSprite* spriteFromObjectString(gd::string str, bool absoluteCenter, bool useGroup, int objLimit, cocos2d::CCArray* objects, cocos2d::CCArray* group, GameObject* groupParent) {
 		if (!enabled || !insideMenuItemFromObjectString || !m_editorLayer) return EditorUI::spriteFromObjectString(str, absoluteCenter, useGroup, objLimit, objects, group, groupParent);
 
-		CCSprite* endResult = EditorUI::spriteFromObjectString(str, absoluteCenter, useGroup, 2123456789, objects, group, groupParent);
-		m_editorLayer->updateObjectColors(objects);
+		CCArray* fireeToldMeToUseThis = CCArray::create();
+		CCSprite* endResult = EditorUI::spriteFromObjectString(str, absoluteCenter, useGroup, 2123456789, fireeToldMeToUseThis, group, groupParent);
+		m_editorLayer->updateObjectColors(fireeToldMeToUseThis);
 		return endResult;
 	}
 };
