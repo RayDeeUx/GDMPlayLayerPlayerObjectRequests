@@ -6,7 +6,7 @@ bool enabled = true;
 
 $on_mod(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
-	listenForSettingChanges<bool>("enabled", [](const bool newEnabled){ enabled = newEnabled; })
+	listenForSettingChanges<bool>("enabled", [](const bool newEnabled){ enabled = newEnabled; });
 }
 
 class $modify(MyPlayerObject, PlayerObject) {
