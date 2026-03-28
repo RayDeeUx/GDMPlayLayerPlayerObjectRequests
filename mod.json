@@ -12,6 +12,13 @@
 	"developer": "RayDeeUx",
 	"description": "Snaps the player to the nearest multiple of 90 degrees.",
 	"repository": "https://github.dev/RayDeeUx/GDMPlayLayerPlayerObjectRequests/tree/SnapToNearest90",
+	"settings": {
+		"enabled": {
+			"name": "Enabled",
+			"type": "bool",
+			"default": true
+		}
+	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
 		"info": "Ping me <cl>(@erymanthus)</c> in the Geode SDK Discord server's <cl>#help</c> channel if you need help. <cr>DMs are NOT accepted.</c>"
