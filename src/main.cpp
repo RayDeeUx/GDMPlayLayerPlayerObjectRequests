@@ -35,29 +35,29 @@ int swngFrameMiniP2 = 0;
 	setting = Mod::get()->getSettingValue<int64_t>(#setting);\
     geode::listenForSettingChanges<int64_t>(#setting, [](int64_t v) { setting = v; });
 
-#define CHANGE_TO_FRAME(playerObject, condition, frameMiniP1, frameMiniP2, frameNrmlP1, frameNrmlP2, callback)\
-	if (condition && playerObject && playerObject->m_gameLayer && playerObject->m_gameLayer->m_player1 && playerObject->m_gameLayer->m_player2) {\
+#define CHANGE_TO_FRAME(condition, frameMiniP1, frameMiniP2, frameNrmlP1, frameNrmlP2, callback)\
+	if (condition && this && this->m_gameLayer && playerObject->m_gameLayer->m_player1 && playerObject->m_gameLayer->m_player2) {\
 		if (m_vehicleSize != 1.f) {\
-			if (playerObject == playerObject->m_gameLayer->m_player1) changeToFrame = frameMiniP1;\
-			else if (playerObject == playerObject->m_gameLayer->m_player2) changeToFrame = frameMiniP2;\
+			if (this == this->m_gameLayer->m_player1) changeToFrame = frameMiniP1;\
+			else if (this == this->m_gameLayer->m_player2) changeToFrame = frameMiniP2;\
 		} else {\
-			if (playerObject == playerObject->m_gameLayer->m_player1) changeToFrame = frameNrmlP1;\
-			else if (playerObject == playerObject->m_gameLayer->m_player2) changeToFrame = frameNrmlP2;\
+			if (this == this->m_gameLayer->m_player1) changeToFrame = frameNrmlP1;\
+			else if (this == this->m_gameLayer->m_player2) changeToFrame = frameNrmlP2;\
 		}\
-		if ((changeToFrame > -1 && playerObject->isInNormalMode()) || (changeToFrame > 0 && !playerObject->isInNormalMode())) static_cast<PlayerObject*>(playerObject)->callback(changeToFrame);\
+		if ((changeToFrame > -1 && this->isInNormalMode()) || (changeToFrame > 0 && !this->isInNormalMode())) static_cast<PlayerObject*>(this)->callback(changeToFrame);\
 	}
 
 #define THE_WHOLE_OWL\
 	int changeToFrame = -1;\
-	CHANGE_TO_FRAME(this, !m_isDart && !m_isRobot && !m_isBall, cubeFrameMiniP1, cubeFrameMiniP2, m_maybeSavedFrame, m_maybeSavedFrame, updatePlayerFrame)\
-	CHANGE_TO_FRAME(this, m_isShip && !m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, GameManager::get()->getPlayerShip(), GameManager::get()->getPlayerShip(), updatePlayerShipFrame)\
-	CHANGE_TO_FRAME(this, m_isShip && m_isPlatformer, jtpkFrameMiniP1, jtpkFrameMiniP2, GameManager::get()->getPlayerJetpack(), GameManager::get()->getPlayerJetpack(), updatePlayerJetpackFrame)\
-	CHANGE_TO_FRAME(this, m_isBall, ballFrameMiniP1, ballFrameMiniP2, GameManager::get()->getPlayerBall(), GameManager::get()->getPlayerBall(), updatePlayerRollFrame)\
-	CHANGE_TO_FRAME(this, m_isBird, birdFrameMiniP1, birdFrameMiniP2, GameManager::get()->getPlayerBird(), GameManager::get()->getPlayerBird(), updatePlayerBirdFrame)\
-	CHANGE_TO_FRAME(this, m_isDart, waveFrameMiniP1, waveFrameMiniP2, GameManager::get()->getPlayerDart(), GameManager::get()->getPlayerDart(), updatePlayerDartFrame)\
-	CHANGE_TO_FRAME(this, m_isRobot, rbotFrameMiniP1, rbotFrameMiniP2, GameManager::get()->getPlayerRobot(), GameManager::get()->getPlayerRobot(), updatePlayerRobotFrame)\
-	CHANGE_TO_FRAME(this, m_isSpider, spdrFrameMiniP1, spdrFrameMiniP2, GameManager::get()->getPlayerSpider(), GameManager::get()->getPlayerSpider(), updatePlayerSpiderFrame)\
-	CHANGE_TO_FRAME(this, m_isSwing, swngFrameMiniP1, swngFrameMiniP2, GameManager::get()->getPlayerSwing(), GameManager::get()->getPlayerSwing(), updatePlayerSwingFrame)
+	CHANGE_TO_FRAME(!m_isDart && !m_isRobot && !m_isBall, cubeFrameMiniP1, cubeFrameMiniP2, m_maybeSavedFrame, m_maybeSavedFrame, updatePlayerFrame)\
+	CHANGE_TO_FRAME(m_isShip && !m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, GameManager::get()->getPlayerShip(), GameManager::get()->getPlayerShip(), updatePlayerShipFrame)\
+	CHANGE_TO_FRAME(m_isShip && m_isPlatformer, jtpkFrameMiniP1, jtpkFrameMiniP2, GameManager::get()->getPlayerJetpack(), GameManager::get()->getPlayerJetpack(), updatePlayerJetpackFrame)\
+	CHANGE_TO_FRAME(m_isBall, ballFrameMiniP1, ballFrameMiniP2, GameManager::get()->getPlayerBall(), GameManager::get()->getPlayerBall(), updatePlayerRollFrame)\
+	CHANGE_TO_FRAME(m_isBird, birdFrameMiniP1, birdFrameMiniP2, GameManager::get()->getPlayerBird(), GameManager::get()->getPlayerBird(), updatePlayerBirdFrame)\
+	CHANGE_TO_FRAME(m_isDart, waveFrameMiniP1, waveFrameMiniP2, GameManager::get()->getPlayerDart(), GameManager::get()->getPlayerDart(), updatePlayerDartFrame)\
+	CHANGE_TO_FRAME(m_isRobot, rbotFrameMiniP1, rbotFrameMiniP2, GameManager::get()->getPlayerRobot(), GameManager::get()->getPlayerRobot(), updatePlayerRobotFrame)\
+	CHANGE_TO_FRAME(m_isSpider, spdrFrameMiniP1, spdrFrameMiniP2, GameManager::get()->getPlayerSpider(), GameManager::get()->getPlayerSpider(), updatePlayerSpiderFrame)\
+	CHANGE_TO_FRAME(m_isSwing, swngFrameMiniP1, swngFrameMiniP2, GameManager::get()->getPlayerSwing(), GameManager::get()->getPlayerSwing(), updatePlayerSwingFrame)
 
 #define HOOK(callback)\
 	void callback(bool p0, bool p1) {\
@@ -67,11 +67,7 @@ int swngFrameMiniP2 = 0;
 	}
 
 class $modify(MyPlayerObject, PlayerObject) {
-	void togglePlayerScale(bool toMini, bool fromPortal) {
-		PlayerObject::togglePlayerScale(toMini, fromPortal);
-		if (!m_gameLayer || !enabled || (this != m_gameLayer->m_player1 && this != m_gameLayer->m_player2)) return;
-		THE_WHOLE_OWL
-	}
+	HOOK(togglePlayerScale)
 	HOOK(toggleBirdMode)
     HOOK(toggleDartMode)
     HOOK(toggleFlyMode)
