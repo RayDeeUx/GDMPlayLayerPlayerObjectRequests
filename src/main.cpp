@@ -36,7 +36,7 @@ int swngFrameMiniP2 = 0;
     geode::listenForSettingChanges<int64_t>(#setting, [](int64_t v) { setting = v; });
 
 #define CHANGE_TO_FRAME(condition, frameMiniP1, frameMiniP2, frameNrmlP1, frameNrmlP2, callback)\
-	if (condition && this && this->m_gameLayer && playerObject->m_gameLayer->m_player1 && playerObject->m_gameLayer->m_player2) {\
+	if (condition && this && this->m_gameLayer && this->m_gameLayer->m_player1 && this->m_gameLayer->m_player2) {\
 		if (m_vehicleSize != 1.f) {\
 			if (this == this->m_gameLayer->m_player1) changeToFrame = frameMiniP1;\
 			else if (this == this->m_gameLayer->m_player2) changeToFrame = frameMiniP2;\
