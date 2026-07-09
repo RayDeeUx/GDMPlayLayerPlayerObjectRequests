@@ -49,7 +49,7 @@ int swngFrameMiniP2 = 0;
 
 #define THE_WHOLE_OWL\
 	int changeToFrame = -1;\
-	CHANGE_TO_FRAME(!m_isDart && !m_isRobot && !m_isBall, cubeFrameMiniP1, cubeFrameMiniP2, m_maybeSavedFrame, m_maybeSavedFrame, updatePlayerFrame)\
+	CHANGE_TO_FRAME(!m_isDart && !m_isRobot && !m_isBall, cubeFrameMiniP1, cubeFrameMiniP2, m_maybeSavedPlayerFrame, m_maybeSavedPlayerFrame, updatePlayerFrame)\
 	CHANGE_TO_FRAME(m_isShip && !m_isPlatformer, shipFrameMiniP1, shipFrameMiniP2, GameManager::get()->getPlayerShip(), GameManager::get()->getPlayerShip(), updatePlayerShipFrame)\
 	CHANGE_TO_FRAME(m_isShip && m_isPlatformer, jtpkFrameMiniP1, jtpkFrameMiniP2, GameManager::get()->getPlayerJetpack(), GameManager::get()->getPlayerJetpack(), updatePlayerJetpackFrame)\
 	CHANGE_TO_FRAME(m_isBall, ballFrameMiniP1, ballFrameMiniP2, GameManager::get()->getPlayerBall(), GameManager::get()->getPlayerBall(), updatePlayerRollFrame)\
