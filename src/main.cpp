@@ -9,9 +9,9 @@ $on_mod(Loaded) {
 	listenForSettingChanges<bool>("enabled", [](const bool enabledNew) {
 		enabled = enabledNew;
 		if (!GJBaseGameLayer::get() || !GJBaseGameLayer::get()->m_uiLayer) return;
-		GJBaseGameLayer::get()->m_uiLayer->m_isPlatformer = enabled;
+		GJBaseGameLayer::get()->m_uiLayer->m_inPlatformer = enabled;
 		GJBaseGameLayer::get()->m_uiLayer->refreshDpad();
-		GJBaseGameLayer::get()->m_uiLayer->updateUINodeVisibility(m_uiLayer->m_isPlatformer);
+		GJBaseGameLayer::get()->m_uiLayer->updateUINodeVisibility(m_uiLayer->m_inPlatformer);
 	});
 }
 
