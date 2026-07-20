@@ -11,7 +11,7 @@ $on_mod(Loaded) {
 		if (!GJBaseGameLayer::get() || !GJBaseGameLayer::get()->m_uiLayer) return;
 		GJBaseGameLayer::get()->m_uiLayer->m_inPlatformer = enabled;
 		GJBaseGameLayer::get()->m_uiLayer->refreshDpad();
-		GJBaseGameLayer::get()->m_uiLayer->updateUINodeVisibility(m_uiLayer->m_inPlatformer);
+		GJBaseGameLayer::get()->m_uiLayer->updateUINodeVisibility(enabled);
 	});
 }
 
