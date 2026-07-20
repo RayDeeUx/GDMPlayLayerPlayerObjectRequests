@@ -12,7 +12,7 @@ $on_mod(Loaded) {
 }
 
 class $modify(MyUILayer, UILayer) {
-	UILayer::togglePlatformerMode(bool inPlatformer) {
+	void togglePlatformerMode(bool inPlatformer) {
 		if (enabled && m_gameLayer && !m_gameLayer->m_isPlatformer) {
 			inPlatformer = true;
 			UILayer::refreshDpad();
