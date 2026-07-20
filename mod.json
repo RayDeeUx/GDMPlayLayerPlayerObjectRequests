@@ -12,9 +12,11 @@
 	"developer": "RayDeeUx",
 	"description": "Some people have odd tastes. Not my place to judge. :P",
 	"settings": {
-		"name": "Enabled",
-		"type": "bool",
-		"default": true
+		"enabled": {
+			"name": "Enabled",
+			"type": "bool",
+			"default": true
+		}
 	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
