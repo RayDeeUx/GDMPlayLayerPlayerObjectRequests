@@ -1,4 +1,4 @@
-# FixSimplePlayerTallIcons
-This is where they make a mod.
+# RevisionistLeaderboardRankHistory
+Some people really need to find healthier ways to cope with their skill issue.
 
 This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2. To report bugs or get help with using my mods, press the Discord button in the lower left corner.
