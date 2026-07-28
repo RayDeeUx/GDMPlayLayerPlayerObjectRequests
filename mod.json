@@ -19,6 +19,7 @@
 		},
 		"rank": {
 			"name": "Rank",
+			"description": "To fake a leaderboard ban, use  `0`  .",
 			"type": "int",
 			"default": 0,
 			"min": 0
