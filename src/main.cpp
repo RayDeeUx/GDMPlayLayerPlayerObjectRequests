@@ -20,8 +20,8 @@ class $modify(MyGameManager, GameManager) {
 		GameManager::reportPercentageForLevel(levelID, percentage, isPlatformer);
 		MyGameManager::checkSteamAchievementUnlockManualReimpl(levelID, percentage, isPlatformer);
 	}
-	void dataLoaded() {
-		GameManager::dataLoaded();
+	void dataLoaded(DS_Dictionary* dict) {
+		GameManager::dataLoaded(dict);
 		MyGameManager::checkSteamStep(false);
 		MyGameManager::checkSteamrolling(false);
 	}
