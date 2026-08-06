@@ -12,14 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - name: Windows
-            image: windows
-            target: Win64
-
-          - name: macOS
-            image: macos
-            target: MacOS
-
           - name: iOS
             image: ios
             target: iOS
