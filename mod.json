@@ -6,6 +6,7 @@
 	},
 	"id": "raydeeux.steamachievementsonmobile",
 	"name": "SteamAchievementsOnMobile",
+	"early-load": true,
 	"version": "v1.0.0",
 	"developer": "RayDeeUx",
 	"description": "Brings the Steam-exclusive achiements to mobile.",
