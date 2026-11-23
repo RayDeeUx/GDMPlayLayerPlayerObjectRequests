@@ -1,36 +1,35 @@
-#include <Geode/modify/GJItemIcon.hpp>
+#include <Geode/modify/PauseLayer.hpp>
 
 using namespace geode::prelude;
 
-class $modify(MyGJItemIcon, GJItemIcon) {
-	struct Fields {
-		UnlockType unlockType = UnlockType::Cube;
-	};
-	void scaleGracefully(float dt) {
-		if (!m_player) return;
-		if (!this->getParent() || !this->getParent()->getUserObject("hiimjustin000.more_icons/name")) return;
-		auto simplePlayerChildSprite = m_player->getChildByType<CCSprite>(0);
-		if (!simplePlayerChildSprite || simplePlayerChildSprite->getChildrenCount() < 4) return;
-		const float originalScale = this->scaleForType(m_fields->unlockType);
-		float futureScale = originalScale;
-		if (this->getContentHeight() > simplePlayerChildSprite->getContentHeight()) {
-			futureScale = simplePlayerChildSprite->getContentHeight() / this->getContentHeight();
-		} else if (this->getContentHeight() < simplePlayerChildSprite->getContentHeight()) {
-			futureScale = this->getContentHeight() / simplePlayerChildSprite->getContentHeight();
-		}
-		if (originalScale == futureScale) {
-			if (this->getContentWidth() > simplePlayerChildSprite->getContentWidth()) {
-				futureScale = simplePlayerChildSprite->getContentWidth() / this->getContentWidth();
-			} else if (this->getContentWidth() < simplePlayerChildSprite->getContentWidth()) {
-				futureScale = this->getContentWidth() / simplePlayerChildSprite->getContentWidth();
-			}
-		}
-		if (futureScale < originalScale) this->setScale(futureScale);
-	}
-	bool init(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) {
-		if (!GJItemIcon::init(p0, p1, p2, p3, p4, p5, p6, p7)) return false;
-		m_fields->unlockType = p0;
-		this->scheduleOnce(schedule_selector(MyGJItemIcon::scaleGracefully), .009f);
-		return true;
+// source code stability audited by alphalaneous
+class $modify(fuck, PauseLayer) {
+	void onSideButtonPressed(CCObject* sender) {
+		PauseLayer::onSideButtonPressed(sender);
+		if (!sender || sender->getTag() != 8) return;
+		TimeSpeedControl* pp = this->m_mainLayer->getChildByType<TimeSpeedControl>(-1);
+		pp->setVisible(false);
+		this->runAction(CCSequence::create(geode::cocos::CallFuncExt::create([p = pp]() {
+			if (!p) return;
+			FLAlertLayer* temp = FLAlertLayer::create("TimeSpeedControl", "", "Close");
+			geode::Ref<TimeSpeedControl> fakeTSC = geode::Ref(p);
+			temp->m_noElasticity = true;
+			temp->m_scene = CCScene::get();
+			temp->m_mainLayer->addChild(fakeTSC.data());
+			fakeTSC.data()->setUserObject("x-pos"_spr, CCFloat::create(p->getPositionX()));
+			fakeTSC.data()->setUserObject("y-pos"_spr, CCFloat::create(p->getPositionY()));
+			fakeTSC.data()->setRotation(270.f);
+			fakeTSC.data()->setPosition(temp->m_mainLayer->getContentSize() / 2.f);
+			fakeTSC.data()->setPositionX(fakeTSC.data()->getPositionX() - 10.f);
+			fakeTSC.data()->setVisible(true);
+			temp->show();
+			temp->addOnExitCallback([s = fakeTSC]() {
+				if (!CCScene::get() || !CCScene::get()->getChildByType<PauseLayer>(-1)) return;
+				s.data()->setVisible(false);
+				s.data()->setRotation(0);
+				s.data()->setPositionX(typeinfo_cast<CCFloat*>(s.data()->getUserObject("x-pos"_spr))->getValue());
+				s.data()->setPositionY(typeinfo_cast<CCFloat*>(s.data()->getUserObject("y-pos"_spr))->getValue());
+			});
+		}), nullptr));
 	}
 };
