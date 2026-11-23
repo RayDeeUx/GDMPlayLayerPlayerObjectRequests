@@ -9,7 +9,7 @@ class $modify(fuck, PauseLayer) {
 		if (!sender || sender->getTag() != 8) return;
 		TimeSpeedControl* pp = this->m_mainLayer->getChildByType<TimeSpeedControl>(-1);
 		pp->setVisible(false);
-		this->runAction(CCSequence::create(geode::cocos::CallFuncExt::create([ml = this->m_mainLayer, p = pp]() {
+		this->runAction(CCSequence::create(geode::cocos::CallFuncExt::create([p = pp]() {
 			if (!p) return;
 			FLAlertLayer* temp = FLAlertLayer::create("TimeSpeedControl", "", "Close");
 			geode::Ref<TimeSpeedControl> fakeTSC = geode::Ref(p);
@@ -22,12 +22,9 @@ class $modify(fuck, PauseLayer) {
 			fakeTSC->setPosition(temp->m_mainLayer->getContentSize() / 2.f);
 			fakeTSC->setPositionX(fakeTSC->getPositionX() - 10.f);
 			fakeTSC->setVisible(true);
-			if (auto lol = ml->getChildByType<TimeSpeedControl>(-1)) lol->removeMeAndCleanup();
 			temp->show();
-			temp->addOnExitCallback([t = temp->m_mainLayer, mlp = ml, s = fakeTSC]() {
-				if (!mlp || !s) return;
-				mlp->addChild(s);
-				if (auto troll = t->getChildByType<TimeSpeedControl>(-1)) troll->removeMeAndCleanup();
+			temp->addOnExitCallback([s = fakeTSC]() {
+				if (!CCScene::get() || !CCScene::get()->getChildByType<PauseLayer>(-1)) return;
 				s->setVisible(false);
 				s->setRotation(0);
 				s->setPositionX(typeinfo_cast<CCFloat*>(s->getUserObject("x-pos"_spr))->getValue());
