@@ -9,26 +9,29 @@ class $modify(fuck, PauseLayer) {
 		if (!sender || sender->getTag() != 8) return;
 		TimeSpeedControl* pp = this->m_mainLayer->getChildByType<TimeSpeedControl>(-1);
 		pp->setVisible(false);
-		this->runAction(CCSequence::create(geode::cocos::CallFuncExt::create([p = pp]() {
+		this->runAction(CCSequence::create(geode::cocos::CallFuncExt::create([ml = this->m_mainLayer, p = pp]() {
 			if (!p) return;
 			FLAlertLayer* temp = FLAlertLayer::create("TimeSpeedControl", "", "Close");
 			geode::Ref<TimeSpeedControl> fakeTSC = geode::Ref(p);
 			temp->m_noElasticity = true;
 			temp->m_scene = CCScene::get();
-			temp->m_mainLayer->addChild(fakeTSC.data());
-			fakeTSC.data()->setUserObject("x-pos"_spr, CCFloat::create(p->getPositionX()));
-			fakeTSC.data()->setUserObject("y-pos"_spr, CCFloat::create(p->getPositionY()));
-			fakeTSC.data()->setRotation(270.f);
-			fakeTSC.data()->setPosition(temp->m_mainLayer->getContentSize() / 2.f);
-			fakeTSC.data()->setPositionX(fakeTSC.data()->getPositionX() - 10.f);
-			fakeTSC.data()->setVisible(true);
+			temp->m_mainLayer->addChild(fakeTSC);
+			fakeTSC->setUserObject("x-pos"_spr, CCFloat::create(p->getPositionX()));
+			fakeTSC->setUserObject("y-pos"_spr, CCFloat::create(p->getPositionY()));
+			fakeTSC->setRotation(270.f);
+			fakeTSC->setPosition(temp->m_mainLayer->getContentSize() / 2.f);
+			fakeTSC->setPositionX(fakeTSC->getPositionX() - 10.f);
+			fakeTSC->setVisible(true);
+			if (auto lol = ml->getChildByType<TimeSpeedControl>(-1)) lol->removeMeAndCleanup();
 			temp->show();
-			temp->addOnExitCallback([s = fakeTSC]() {
-				if (!CCScene::get() || !CCScene::get()->getChildByType<PauseLayer>(-1)) return;
-				s.data()->setVisible(false);
-				s.data()->setRotation(0);
-				s.data()->setPositionX(typeinfo_cast<CCFloat*>(s.data()->getUserObject("x-pos"_spr))->getValue());
-				s.data()->setPositionY(typeinfo_cast<CCFloat*>(s.data()->getUserObject("y-pos"_spr))->getValue());
+			temp->addOnExitCallback([t = temp->m_mainLayer, mlp = ml, s = fakeTSC]() {
+				if (!mlp || !s) return;
+				mlp->addChild(s);
+				if (auto troll = t->getChildByType<TimeSpeedControl>(-1)) troll->removeMeAndCleanup();
+				s->setVisible(false);
+				s->setRotation(0);
+				s->setPositionX(typeinfo_cast<CCFloat*>(s->getUserObject("x-pos"_spr))->getValue());
+				s->setPositionY(typeinfo_cast<CCFloat*>(s->getUserObject("y-pos"_spr))->getValue());
 			});
 		}), nullptr));
 	}
