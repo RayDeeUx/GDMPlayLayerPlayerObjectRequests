@@ -8,12 +8,17 @@
 	},
 	"id": "raydeeux.harkenplatformerinputseverywhere",
 	"name": "HarkenPlatformerInputsEverywhere",
-	"version": "v1.0.0",
+	"version": "v1.0.1",
 	"developers": ["RayDeeUx", "chagh"],
 	"repository": "https://codeberg.org/RayDeeUx/HarkenPlatformerInputsEverywhere",
 	"settings": {
 		"enabled": {
 			"name": "Enabled",
+			"type": "bool",
+			"default": true
+		},
+		"lowLatency": {
+			"name": "Low Latency Mode",
 			"type": "bool",
 			"default": true
 		}

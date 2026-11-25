@@ -2,12 +2,16 @@
 
 using namespace geode::prelude;
 
-bool enabled = true;
+bool enabled = true, lowLatency = true;
 
 $on_mod(Loaded) {
 	enabled = Mod::get()->getSettingValue<bool>("enabled");
 	listenForSettingChanges<bool>("enabled", [](const bool enabledNew){
 		enabled = enabledNew;
+	});
+	lowLatency = Mod::get()->getSettingValue<bool>("lowLatency");
+	listenForSettingChanges<bool>("lowLatency", [](const bool lowLatencyNew){
+		lowLatency = lowLatencyNew;
 	});
 }
 
@@ -17,13 +21,16 @@ class $modify(fuck, GJBaseGameLayer) {
 		(void) self.setHookPriority("GJBaseGameLayer::handleButton", Priority::Replace);
 	}
 	void handleButton(bool down, int button, bool isPlayer1) {
-		bool m_isPlatformerOriginal = this->m_isPlatformer;
-		this->m_isPlatformer = true;
-		GJBaseGameLayer::handleButton(down, button, isPlayer1);
-		this->m_isPlatformer = m_isPlatformerOriginal;
-		/*
 		if (!enabled) {
 			GJBaseGameLayer::handleButton(down, button, isPlayer1);
+			return;
+		}
+
+		if (lowLatency) {
+			const bool m_isPlatformerOriginal = this->m_isPlatformer;
+			this->m_isPlatformer = true;
+			GJBaseGameLayer::handleButton(down, button, isPlayer1);
+			this->m_isPlatformer = m_isPlatformerOriginal;
 			return;
 		}
 
@@ -125,6 +132,5 @@ class $modify(fuck, GJBaseGameLayer) {
 				this->m_jumping = true;
 			}
 		}
-		*/
 	}
 };
