@@ -1,16 +1,19 @@
 {
-	"geode": "4.7.0",
+	"geode": "6.0.0",
 	"gd": {
-		"win": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074",
-		"android": "2.2074"
+		"win": "2.2091",
+		"mac": "2.2091",
+		"ios": "2.2091",
+		"android": "2.2091"
 	},
-	"id": "raydeeux.fixsimpleplayertallicons",
-	"name": "FixSimplePlayerTallIcons",
+	"id": "raydeeux.hidefollowercount",
+	"name": "HideFollowerCount",
 	"version": "v1.0.0",
 	"developer": "RayDeeUx",
-	"description": "Some people have odd tastes. Not my place to judge. :P",
+	"description": "Read the mod name.",
+	"dependencies": {
+		"geode.node-ids": ">=1.23.0"
+	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
 		"info": "Ping me <cl>(@erymanthus)</c> in the Geode SDK Discord server's <cl>#help</c> channel if you need help. <cr>DMs are NOT accepted.</c>"
