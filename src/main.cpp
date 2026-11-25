@@ -39,7 +39,17 @@ class $modify(fuck, GJBaseGameLayer) {
 			}
 		}
 
+		#ifdef GEODE_IS_IOS
+		bool dualTouch = false;
+		for (auto& action : this->m_effectManager->m_unkVector1e0) {
+			if (action.m_dualMode && !action.m_disabled) {
+				dualTouch = true;
+				break;
+			}
+		}
+		#else
 		bool dualTouch = this->m_effectManager->hasActiveDualTouch();
+		#endif
 
 		if (down) {
 			this->m_dualTouchTrigger = dualTouch;
