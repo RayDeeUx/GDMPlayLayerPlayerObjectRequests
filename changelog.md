@@ -1,3 +1,3 @@
-# FixSimplePlayerTallIcons Changelog
+# HarkenPlatformerInputsEverywhere Changelog
 ## v1.0.0
-- Initial release (on GitHub).
+- Initial release (on Codeberg).
