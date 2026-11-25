@@ -18,7 +18,7 @@ class $modify(fuck, GJBaseGameLayer) {
 	}
 	void handleButton(bool down, int button, bool isPlayer1) {
 		bool m_isPlatformerOriginal = this->m_isPlatformer;
-		this->m_isPlatformer = false;
+		this->m_isPlatformer = true;
 		GJBaseGameLayer::handleButton(down, button, isPlayer1);
 		this->m_isPlatformer = m_isPlatformerOriginal;
 		/*
